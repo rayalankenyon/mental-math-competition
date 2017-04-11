@@ -48,7 +48,7 @@ public class Game extends HttpServlet
 				boolean success = st.execute("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
 				if(!success) {
 					session.invalidate();
-					reponse.sendRedirect("/");
+					response.sendRedirect("/");
 				}
 			}
 			session.setAttribute("username", username);
