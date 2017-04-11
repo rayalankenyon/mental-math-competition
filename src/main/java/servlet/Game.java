@@ -66,7 +66,7 @@ public class Game extends HttpServlet
     	// print
     	// logout	
 	    out.print("<table><tr><td>");
-	    out.print("<form action='/?Logout'><input type='submit' value='Logout'></form>")
+	    out.print("<form action='/?Logout'><input type='submit' value='Logout'></form>");
 	    out.print("</td></tr></table>");
     	// question / answers form
     	
