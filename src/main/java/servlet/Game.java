@@ -81,7 +81,7 @@ public class Game extends HttpServlet
 	    			rs.next();
 	    			int value = rs.getInt(1);
 
-	    			if(correct && current_question <= MAX_QUESTIONS) {
+	    			if(correct && (answered_question <= MAX_QUESTIONS)) {
 	    				score += value;
 	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
 	    			}
