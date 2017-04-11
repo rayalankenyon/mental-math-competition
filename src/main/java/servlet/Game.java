@@ -82,8 +82,8 @@ public class Game extends HttpServlet
 	    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
 	    while(rs.next()) {
 	    	out.print("<tr>");
-	    	out.print("<td>" + rs.getString(0) + "</td>");
-	    	out.print("<td>" + rs.getString(1) + "</td>");
+	    	out.print("<td>" + rs.getString("username") + "</td>");
+	    	out.print("<td>" + rs.getString("score") + "</td>");
 	    	out.print("</tr>");
 	    }
 	    // for loop to print scores in desc order
