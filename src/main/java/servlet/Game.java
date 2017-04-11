@@ -34,7 +34,7 @@ public class Game extends HttpServlet
     	return;
     }
 
-    if(session.getAttribute("username") == null) {
+    if(session.isNew()) {
     	out.print("<table><tr><td>");
     	out.print("<form method='post'>");
 		out.print("username: <input type='text' name='username' required><br>");
@@ -54,7 +54,7 @@ public class Game extends HttpServlet
 	    	con = getConnection();
 	    	st = con.createStatement();
 
-	    	if(username != null && password == null) {
+	    	if(username != null && password != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
 				if(!rs.next()) {
 					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
@@ -65,6 +65,11 @@ public class Game extends HttpServlet
 					}
 				}
 				session.setAttribute("username", username);
+	    	}
+	    	if(session.getAttribute("username") == null) {
+	    		session.invalidate();
+				response.sendRedirect("/");
+				return;
 	    	}
 
 	    	rs = st.executeQuery("SELECT current_question, score from math.competitor WHERE username='" + session.getAttribute("username") + "'");
