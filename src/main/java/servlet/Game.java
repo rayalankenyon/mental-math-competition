@@ -44,11 +44,11 @@ public class Game extends HttpServlet
     } else {
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
-    	ResultSet rs = null;
-    	Statement st = null;
-    	Connection con = null;
-
+    	
     	try {
+    		ResultSet rs = null;
+    		Statement st = null;
+    		Connection con = null;
 	    	con = getConnection();
 	    	st = con.createStatement();
 
@@ -65,7 +65,25 @@ public class Game extends HttpServlet
 				}
 				session.setAttribute("username", username);
 	    	}
-    	
+    	} catch(SQLException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			out.print(sw.toString());
+		} catch(URISyntaxException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			out.print(sw.toString());
+    	} finally {
+    		try {
+    			if(rs != null) { rs.close(); }
+    			if(st != null) { st.close(); }
+    			if(con != null) { con.close(); }
+    		} catch(SQLException e) { 
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				out.print(sw.toString());
+			}
+    	}
     	// print
     	// logout	
 	    out.print("<table><tr><td>");
@@ -74,24 +92,45 @@ public class Game extends HttpServlet
 	    out.print("<br>");
 
     	// question / answers form
-    	st.clearBatch();
-    	int current_question = 1;
-    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
-    	out.print(rs.getString("text"));
-    	st.clearBatch();
-    	
-    	// scoreboard
-	    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
-	    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
-	    while(rs.next()) {
-	    	out.print("<tr>");
-	    	out.print("<td>" + rs.getString("username") + "</td>");
-	    	out.print("<td>" + rs.getString("score") + "</td>");
-	    	out.print("</tr>");
-	    }
+	    try {
+	    	Connection con = getConnection();
+	    	Statement st = con.createStatement();
+	    	int current_question = 1;
+	  		ResultSet rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
+    	} catch(SQLException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			out.print(sw.toString());
+		} catch(URISyntaxException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			out.print(sw.toString());
+    	} finally {
+    		try {
+    			if(rs != null) { rs.close(); }
+    			if(st != null) { st.close(); }
+    			if(con != null) { con.close(); }
+    		} catch(SQLException e) { 
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				out.print(sw.toString());
+			}
+    	}
 
-	    out.print("</table>");
+    	try {
+    		Connection con = getConnection();
+	    	Statement st = con.createStatement();
+	  		ResultSet rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
+	     	// scoreboard
+		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
 
+		    while(rs.next()) {
+		    	out.print("<tr>");
+		    	out.print("<td>" + rs.getString("username") + "</td>");
+		    	out.print("<td>" + rs.getString("score") + "</td>");
+		    	out.print("</tr>");
+		    }
+		    out.print("</table>");
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
