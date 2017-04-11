@@ -78,13 +78,13 @@ public class Game extends HttpServlet
     	int current_question = 1;
     	rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + current_question);
     	out.print("<h3>" + rs.getString("text") + "</h3>");
-    	out.print("<form>");
-    	rs = st.executeQuery("SELECT answer.id, answer.text, answer.correct FROM math.answer WHERE answer.question_id=" + current_question);
+    	// out.print("<form>");
+    	// rs = st.executeQuery("SELECT answer.id, answer.text, answer.correct FROM math.answer WHERE answer.question_id=" + current_question);
     	
-    	while(rs.next()) {
-    		out.print("<input type='radio' value='answerid' name='choice' required>" + rs.getString("text"));
-    	}
-    	out.print("</form>");
+    	// while(rs.next()) {
+    	// 	out.print("<input type='radio' value='answerid' name='choice' required>" + rs.getString("text"));
+    	// }
+    	// out.print("</form>");
     	out.print("</td></tr></table>");
     	out.print("<br>");
     	
