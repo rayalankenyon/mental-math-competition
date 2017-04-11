@@ -28,7 +28,7 @@ public class Game extends HttpServlet
 
     out.print(html_start());
 
-   	if(request.getParameter("Login") != null); {
+   	if(request.getParameter("Login") != null) {
     	out.print("this is the login page");
     } else if(request.getParameter("CreateAccount") != null) {
     	out.print("this is the create account page");
