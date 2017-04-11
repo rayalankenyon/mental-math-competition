@@ -23,7 +23,7 @@ public class Game extends HttpServlet
     {
     response.setContentType ( "text/html" ) ;
     final PrintWriter  out  =  response.getWriter() ;
-    final MAX_QUESTIONS = 10;
+    final int MAX_QUESTIONS = 10;
     HttpSession session = request.getSession(true);
     session.setMaxInactiveInterval(3600);
     out.print(html_start());
