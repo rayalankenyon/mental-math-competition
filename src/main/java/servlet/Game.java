@@ -67,6 +67,7 @@ public class Game extends HttpServlet
 	    	}
 	    	if(choice != null) {
 	    		rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
+	    		rs.next();
 	    		int current_question = rs.getInt("current_question");
 	    	}
 
@@ -81,6 +82,7 @@ public class Game extends HttpServlet
 	    	out.print("<form method='post'>");
 	    	out.print("<table><tr><th>");
 	    	rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
+	    	rs.next();
 	    	int current_question = rs.getInt("current_question");
 	    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
 	    	rs.next();
