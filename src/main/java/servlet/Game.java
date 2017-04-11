@@ -75,7 +75,7 @@ public class Game extends HttpServlet
 	    		rs.next();
 	    		boolean correct = rs.getBoolean(1);
 	    		int answered_question = rs.getInt(2);
-	    		if(answered_question = current_question) {
+	    		if(answered_question == current_question) {
 	    			rs = st.executeQuery("SELECT value from math.question WHERE id=" + answered_question);
 	    			rs.next();
 	    			int value = rs.getInt(1);
