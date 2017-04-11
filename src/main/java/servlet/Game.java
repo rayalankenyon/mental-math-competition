@@ -54,7 +54,7 @@ public class Game extends HttpServlet
 	    	con = getConnection();
 	    	st = con.createStatement();
 
-	    	if(username != null && password != null) {
+	    	if(username != null && password == null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
 				if(!rs.next()) {
 					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
