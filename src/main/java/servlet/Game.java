@@ -23,17 +23,17 @@ public class Game extends HttpServlet
     {
     response.setContentType ( "text/html" ) ;
     final PrintWriter  out  =  response.getWriter() ;
-    String schema = request.getParameter("SCHEMA");
-    String table = request.getParameter("TABLE");
+    HttpSession session = request.getSession(true);
+    session.setMaxInactiveInterval(3600);
 
-    out.print(html_start());
-
-    if(schema == null || table == null) {
-    	out.print("<h1>Select a schema &amp; a table ...</h1>");
+    if(session.isNew()) {
+    	out.print("<a href=''>Login</a> or <a href=''>create an account.</a>");
     }
     else {
-    	out.print(html_table(schema, table));
+    	out.print("this is an old session");
     }
+
+    out.print(html_start());
 
     out.print(html_end());
     out.close() ;
@@ -46,69 +46,6 @@ public class Game extends HttpServlet
     {
     this.doPost ( request, response ) ;
     } // end doGet method
-
-    public String html_table(String schema, String table) {
-    	ResultSet rs = null;
-    	Statement st = null;
-    	Connection con = null;
-    	ResultSetMetaData rsmd = null;
-    	String result = "";
-
-    	try {
-    		con = getConnection();
-    		st = con.createStatement();
-    		rs = st.executeQuery("SELECT * FROM " + schema + "." + table);
-			rsmd = rs.getMetaData();
-
-			int column_count = rsmd.getColumnCount();
-
-			result += "<p>" + rsmd.getTableName(1).toUpperCase() + "</p>";
-      		result += "<table><tr>";
-      
-			for(int col = 1; col <= column_count; col++) {
-				result += "<th>";
-				result += rsmd.getColumnName(col).toUpperCase();
-        result += "<br>";
-				result += "<small>";
-				result += rsmd.getColumnTypeName(col).toUpperCase();
-				result += "</small>";
-				result += "</th>";
-			}
-			result += "</tr>";
-
-    		while(rs.next()) { 
-    			result += "<tr>";
-    			for(int col = 1; col <= column_count; col++) {
-    				result += "<td>" + rs.getString(col) + "</td>";
-    			}
-    			result += "</tr>"; 
-    		}
-    	} catch(SQLException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			result += exceptionAsString;
-		} catch(URISyntaxException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			result += exceptionAsString;
-    	} finally {
-    		try {
-    			if(rs != null) { rs.close(); }
-    			if(st != null) { st.close(); }
-    			if(con != null) { con.close(); }
-    		} catch(SQLException e) { 
-				StringWriter sw = new StringWriter();
-				e.printStackTrace(new PrintWriter(sw));
-				String exceptionAsString = sw.toString();
-				result += exceptionAsString;   
-			}
-
-			result += "</table>";
-    	}
-    	return result;
-    }
 
     private static Connection getConnection() throws URISyntaxException, SQLException {
     	String db_url = System.getenv("JDBC_DATABASE_URL");
