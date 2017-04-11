@@ -69,6 +69,8 @@ public class Game extends HttpServlet
 	    		rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
 	    		rs.next();
 	    		int current_question = rs.getInt("current_question");
+	    		current_question++;
+	    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + "WHERE username='" + session.getAttribute("username") + "'");
 	    	}
 
 	    	// print
