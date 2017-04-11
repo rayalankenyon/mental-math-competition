@@ -57,13 +57,9 @@ public class Game extends HttpServlet
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			result += exceptionAsString;
 		} catch(URISyntaxException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
-			String exceptionAsString = sw.toString();
-			result += exceptionAsString;
     	} finally {
     		// close
     	}
