@@ -45,13 +45,13 @@ public class Game extends HttpServlet
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
     	
+    	ResultSet rs = null;
+    	Statement st = null;
+    	Connection con = null;
+
     	try {
-    		ResultSet rs = null;
-    		Statement st = null;
-    		Connection con = null;
 	    	con = getConnection();
 	    	st = con.createStatement();
-
 
 	    	if(username != null && password != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
@@ -93,10 +93,10 @@ public class Game extends HttpServlet
 
     	// question / answers form
 	    try {
-	    	Connection con = getConnection();
-	    	Statement st = con.createStatement();
+	    	con = getConnection();
+	    	st = con.createStatement();
 	    	int current_question = 1;
-	  		ResultSet rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
+	  		rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
