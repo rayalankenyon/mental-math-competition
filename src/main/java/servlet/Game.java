@@ -88,6 +88,7 @@ public class Game extends HttpServlet
 	    		out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
 	    		out.print("</td></tr>");
 	    	}
+	    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
 	    	out.print("</table><br>");
 	    	out.print("</form>");
 
