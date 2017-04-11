@@ -118,9 +118,9 @@ public class Game extends HttpServlet
     	}
 
     	try {
-    		Connection con = getConnection();
-	    	Statement st = con.createStatement();
-	  		ResultSet rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
+    		con = getConnection();
+	    	st = con.createStatement();
+	  		rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
 	     	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
 
