@@ -29,11 +29,11 @@ public class Game extends HttpServlet
 
     if(session.isNew()) {
     	out.print("<table><tr><td>");
-    	out.print("<form method='post'>"
+    	out.print("<form method='post'>");
 		out.print("username: <input type='text' name='username' required><br>");
 		out.print("password: <input type='password' name='password' required><br>");
 		out.print("<input type='submit' value='Login'> or <input type='button' onclock='' value='Create Account'>");
-</form>");
+		out.print(</form>");
     	out.print("</td></tr></table>");
     } else {
     	// logout
