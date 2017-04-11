@@ -29,6 +29,7 @@ public class Game extends HttpServlet
 
     if(request.getParameter("Logout") != null) {
     	session.invalidate();
+    	reponse.sendRedirect("/");
     	return;
     }
 
