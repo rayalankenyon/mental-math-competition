@@ -37,6 +37,7 @@ public class Game extends HttpServlet
     	out.print("</td></tr></table>");
     } else {
     	// logout
+
     	// question / answers form
     	// scoreboard
     }
@@ -73,7 +74,7 @@ public class Game extends HttpServlet
         "<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>"+
         "<style>"+
         "* {"+
-          "font-family: 'Arial Black', Gadget, sans-serif;"+
+          "font-family: sans-serif;"+
         "}"+
         "ul {"+
             "list-style-type: none;"+
