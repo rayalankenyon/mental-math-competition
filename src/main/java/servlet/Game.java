@@ -97,6 +97,7 @@ public class Game extends HttpServlet
 	    	st = con.createStatement();
 	    	int current_question = 1;
 	  		rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
+	  		out.print(rs.getString("text"));
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
