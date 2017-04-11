@@ -52,8 +52,8 @@ public class Game extends HttpServlet
 	    	if(username != null && password != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
 				if(!rs.next()) {
-					boolean success = st.execute("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
-					if(!success) {
+					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
+					if(status <= 0) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
 						return;
