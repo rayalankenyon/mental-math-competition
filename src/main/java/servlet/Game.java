@@ -34,7 +34,7 @@ public class Game extends HttpServlet
     	return;
     }
 
-    if(session.isNew()) {
+    if(session.getAttribute("username") == null) {
     	out.print("<table><tr><td>");
     	out.print("<form method='post'>");
 		out.print("username: <input type='text' name='username' required><br>");
@@ -66,6 +66,7 @@ public class Game extends HttpServlet
 				}
 				session.setAttribute("username", username);
 	    	}
+
 	    	rs = st.executeQuery("SELECT current_question, score from math.competitor WHERE username='" + session.getAttribute("username") + "'");
 	    	rs.next();
 	    	int current_question = rs.getInt("current_question");
