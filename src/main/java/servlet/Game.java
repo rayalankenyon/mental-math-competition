@@ -76,7 +76,7 @@ public class Game extends HttpServlet
     	// question / answers form
     	out.print("<table><tr><td>");
     	int current_question = 1;
-    	rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + Integer.toString(current_question));
+    	rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + current_question);
     	out.print("<h3>" + rs.getString("text") + "</h3>");
     	out.print("</td></tr></table>");
     	out.print("<br>");
