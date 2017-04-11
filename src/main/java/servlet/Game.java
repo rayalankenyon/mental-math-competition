@@ -66,10 +66,11 @@ public class Game extends HttpServlet
 				}
 				session.setAttribute("username", username);
 	    	}
+	    	rs = st.executeQuery("SELECT current_question, score from math.competitor WHERE username='" + session.getAttribute("username") + "'");
+	    	rs.next();
+	    	int current_question = rs.getInt("current_question");
+
 	    	if(choice != null) {
-	    		rs = st.executeQuery("SELECT current_question, score from math.competitor WHERE username='" + session.getAttribute("username") + "'");
-	    		rs.next();
-	    		int current_question = rs.getInt("current_question");
 	    		int score = rs.getInt("score");
 	    		// check for validity before incrementing questions answered
 	    		rs = st.executeQuery("SELECT correct, question_id from math.answer WHERE id=" + choice);
@@ -81,11 +82,11 @@ public class Game extends HttpServlet
 	    			rs.next();
 	    			int value = rs.getInt(1);
 
-	    			if(correct && (answered_question <= MAX_QUESTIONS)) {
+	    			if(correct) {
 	    				score += value;
 	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
 	    			}
-	    			if(current_question < MAX_QUESTIONS) {
+	    			if(current_question <= MAX_QUESTIONS) {
 			    		current_question++;
 			    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + " WHERE username='" + session.getAttribute("username") + "'");	   
 	    			} 			
@@ -105,27 +106,28 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-	    	out.print("<form method='post'>");
-	    	out.print("<table><tr><th>");
-	    	rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
-	    	rs.next();
-	    	int current_question = rs.getInt("current_question");
-	    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
-	    	rs.next();
-	    	out.print(rs.getString("text"));
-	    	out.print("</th></tr>");
-	    	// while loop
-	    	rs = st.executeQuery("SELECT id, text, correct FROM math.answer WHERE question_id=" + current_question);
-	    
-	    	while(rs.next()) {
-	    		out.print("<tr><td>");
-	    		out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
-	    		out.print("</td></tr>");
+	    	if(current_question <= MAX_QUESTIONS) {
+		    	out.print("<form method='post'>");
+		    	out.print("<table><tr><th>");
+		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
+		    	// rs.next();
+		    	// int current_question = rs.getInt("current_question");
+		    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
+		    	rs.next();
+		    	out.print(rs.getString("text"));
+		    	out.print("</th></tr>");
+		    	// while loop
+		    	rs = st.executeQuery("SELECT id, text, correct FROM math.answer WHERE question_id=" + current_question);
+		    
+		    	while(rs.next()) {
+		    		out.print("<tr><td>");
+		    		out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
+		    		out.print("</td></tr>");
+		    	}
+		    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
+		    	out.print("</table><br>");
+		    	out.print("</form>");
 	    	}
-	    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
-	    	out.print("</table><br>");
-	    	out.print("</form>");
-
 	    	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
 		    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
