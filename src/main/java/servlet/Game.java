@@ -83,7 +83,7 @@ public class Game extends HttpServlet
 	    while(rs.next()) {
 	    	out.print("<tr>");
 	    	out.print("<td>" + rs.getString(0) + "</td>");
-	    	out.print("<td>" + rs.getString(1) + "</td>")
+	    	out.print("<td>" + rs.getString(1) + "</td>");
 	    	out.print("</tr>");
 	    }
 	    // for loop to print scores in desc order
