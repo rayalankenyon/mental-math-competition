@@ -38,22 +38,35 @@ public class Game extends HttpServlet
     } else {
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
-    	Connection con = getConnection();
-    	Statement st = con.createStatement();
-    	ResultSet rs = null;
+    	try {
+	    	Connection con = getConnection();
+	    	Statement st = con.createStatement();
+	    	ResultSet rs = null;
 
-    	if(username != null && password != null) {
-			rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
-			if(!rs.next()) {
-				boolean success = st.execute("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
-				if(!success) {
-					session.invalidate();
-					response.sendRedirect("/");
+	    	if(username != null && password != null) {
+				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
+				if(!rs.next()) {
+					boolean success = st.execute("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
+					if(!success) {
+						session.invalidate();
+						response.sendRedirect("/");
+					}
 				}
-			}
-			session.setAttribute("username", username);
+				session.setAttribute("username", username);
+	    	}
+    	} catch(SQLException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String exceptionAsString = sw.toString();
+			result += exceptionAsString;
+		} catch(URISyntaxException e) {
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			String exceptionAsString = sw.toString();
+			result += exceptionAsString;
+    	} finally {
+    		// close
     	}
-
     	// print
     	// logout	
     	// question / answers form
