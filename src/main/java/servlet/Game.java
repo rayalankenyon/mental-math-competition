@@ -32,12 +32,30 @@ public class Game extends HttpServlet
     	out.print("<form method='post'>");
 		out.print("username: <input type='text' name='username' required><br>");
 		out.print("password: <input type='password' name='password' required><br>");
-		out.print("<input type='submit' value='Login'> or <input type='button' onclock='' value='Create Account'>");
+		out.print("<input type='submit' value='Login or create account.'>");
 		out.print("</form>");
     	out.print("</td></tr></table>");
     } else {
-    	// logout
+    	String username = request.getParameter("username");
+    	String password = request.getParameter("password");
+    	Connection con = getConnection();
+    	Statement st = con.createStatement();
+    	ResultSet rs = null;
 
+    	if(username != null && password != null) {
+			rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
+			if(!rs.next()) {
+				boolean success = st.execute("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
+				if(!success) {
+					session.invalidate();
+					reponse.sendRedirect("/");
+				}
+			}
+			session.setAttribute("username", username);
+    	}
+
+    	// print
+    	// logout	
     	// question / answers form
     	// scoreboard
     }
