@@ -93,9 +93,11 @@ public class Game extends HttpServlet
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
+			out.print(sw.toString());
 		} catch(URISyntaxException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
+			out.print(sw.toString());
     	} finally {
     		try {
     			if(rs != null) { rs.close(); }
@@ -104,6 +106,7 @@ public class Game extends HttpServlet
     		} catch(SQLException e) { 
 				StringWriter sw = new StringWriter();
 				e.printStackTrace(new PrintWriter(sw));
+				out.print(sw.toString());
 			}
     	}
     }
