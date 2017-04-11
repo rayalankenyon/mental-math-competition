@@ -27,6 +27,12 @@ public class Game extends HttpServlet
     session.setMaxInactiveInterval(3600);
     out.print(html_start());
 
+    if(request.getParameter("Logout") != null) {
+    	session.invalidate();
+    	reponse.sendRedirect("/");
+    	return;
+    }
+
     if(session.isNew()) {
     	out.print("<table><tr><td>");
     	out.print("<form method='post'>");
@@ -49,11 +55,12 @@ public class Game extends HttpServlet
 					boolean success = st.execute("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
 					if(!success) {
 						session.invalidate();
-						response.sendRedirect("/");
+						response.sendRedirect("/?Logout");
 					}
 				}
 				session.setAttribute("username", username);
 	    	}
+
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
