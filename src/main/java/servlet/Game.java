@@ -44,10 +44,14 @@ public class Game extends HttpServlet
     } else {
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
+    	ResultSet rs = null;
+    	Statement st = null;
+    	Connection con = null;
+
     	try {
-	    	Connection con = getConnection();
-	    	Statement st = con.createStatement();
-	    	ResultSet rs = null;
+	    	con = getConnection();
+	    	st = con.createStatement();
+
 
 	    	if(username != null && password != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
