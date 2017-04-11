@@ -26,14 +26,14 @@ public class Game extends HttpServlet
     HttpSession session = request.getSession(true);
     session.setMaxInactiveInterval(3600);
 
+    out.print(html_start());
+
     if(session.isNew()) {
-    	out.print("<a href=''>Login</a> or <a href=''>create an account.</a>");
+    	out.print("<a href='/Game?Login'>Login</a> or <a href='/Game?CreateAccount'>create an account.</a>");
     }
     else {
     	out.print("this is an old session");
     }
-
-    out.print(html_start());
 
     out.print(html_end());
     out.close() ;
@@ -130,38 +130,6 @@ public class Game extends HttpServlet
         "</style>"+
       "</head>"+
       "<body>"+
-      "<hr>"+
-        "<ul>"+
-          "<li class='dropdown'><a href='#'>MELODY</a>"+
-            "<div class='dropdown-content'>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=album'>ALBUM</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=band'>BAND</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=genre'>GENRE</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=musician'>MUSICIAN</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=musician_band'>MUSICIAN_BAND</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=salesperson'>SALESPERSON</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=studio'>STUDIO</a>"+
-              "<a href='/Game?SCHEMA=melody&TABLE=track'>TRACK</a>"+
-            "</div>"+
-          "</li>"+
-          "<li class='dropdown'><a href='#'>MATH</a>"+
-            "<div class='dropdown-content'>"+
-              "<a href='/Game?SCHEMA=math&TABLE=choice'>CHOICE</a>"+
-              "<a href='/Game?SCHEMA=math&TABLE=competitor'>COMPETITOR</a>"+
-              "<a href='/Game?SCHEMA=math&TABLE=question'>QUESTION</a>"+
-              "<a href='/Game?SCHEMA=math&TABLE=submission'>SUBMISSION</a>"+
-            "</div>"+
-          "</li>"+
-		  "<li class='dropdown'><a href='#'>TEXTBOOK</a>"+
-            "<div class='dropdown-content'>"+
-              "<a href='/Game?SCHEMA=textbook&TABLE=author'>AUTHOR</a>"+
-              "<a href='/Game?SCHEMA=textbook&TABLE=author_title'>AUTHOR_TITLE</a>"+
-              "<a href='/Game?SCHEMA=textbook&TABLE=book'>BOOK</a>"+
-              "<a href='/Game?SCHEMA=textbook&TABLE=publisher'>PUBLISHER</a>"+
-            "</div>"+
-          "</li>"+
-        "</ul>"+
-      "<hr>"+
       "<div id='content'>";
     }
 
