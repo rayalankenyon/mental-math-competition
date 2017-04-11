@@ -72,10 +72,20 @@ public class Game extends HttpServlet
 	    out.print("<table><tr><td>");
 	    out.print("<form action='/?Logout' method='post'><input type='submit' value='Logout'></form>");
 	    out.print("</td></tr></table>");
+	    out.print("<br>");
+
     	// question / answers form
     	
     	// scoreboard
-	    out.print("<table><tr><th>Scores</th></tr>");
+	    out.print("<table><tr><th colspan=2>Scores</th></tr>");
+	    out.print("<tr><td>Username</td><td>Score</td></tr>");
+	    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
+	    while(rs.next()) {
+	    	out.print("<tr>");
+	    	out.print("<td>" + rs.getString(0) + "</td>");
+	    	out.print("<td>" + rs.getString(1) + "</td>")
+	    	out.print("</tr>");
+	    }
 	    // for loop to print scores in desc order
 	    out.print("</table>");
 
