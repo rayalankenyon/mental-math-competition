@@ -1,61 +1,79 @@
---
--- Create_Math.SQL by GRKenyon 
--- FEB 28 2017
--- Create math schema for melody-math web app
---
-DROP SCHEMA IF EXISTS math CASCADE;
+-- GRKenyon APR 11 2017
+-- Create math schema for Pogram 3 math web app
+DROP SCHEMA IF EXISTS math CASCADE ;
 CREATE SCHEMA math;
 
-CREATE TABLE math.choice (
-	id SERIAL PRIMARY KEY,
-	choicetext VARCHAR(256) NOT NULL
-);
-
-INSERT INTO math.choice VALUES(201, '$$\frac{17}{12}$$');
-INSERT INTO math.choice VALUES(202, '$$\frac{12}{17}$$');
-INSERT INTO math.choice VALUES(203, '$$\frac{5}{7}$$');
-INSERT INTO math.choice VALUES(204, '$$\frac{7}{5}$$');
-INSERT INTO math.choice VALUES(205, '$$\frac{1-\sqrt{2}}{2}$$');
-INSERT INTO math.choice VALUES(206, '$$\frac{2-\sqrt{3}}{2}$$');
-INSERT INTO math.choice VALUES(207, '$$\frac{3-\sqrt{2}}{3}$$');
-INSERT INTO math.choice VALUES(208, '$$False$$');
-INSERT INTO math.choice VALUES(209, '$$True$$');
-
 CREATE TABLE math.competitor (
-	id SERIAL PRIMARY KEY,
-	username VARCHAR(32) NOT NULL,
-	password VARCHAR(256) NOT NULL,
-	firstname VARCHAR(32) NOT NULL,
-	lastname VARCHAR(32) NOT NULL,
-	score INT
+	username VARCHAR(32) PRIMARY KEY,
+	password VARCHAR(256),
+	score INT DEFAULT 0,
+	current_question INT DEFAULT 1
 );
 
-INSERT INTO math.competitor VALUES(101, 'Superman32', 'Rosebud', 'Jordan', 'Jara', NULL);
-INSERT INTO math.competitor VALUES(102, 'Rocker96', 'PSWRD', 'Clinton', 'Petrie', NULL);
-INSERT INTO math.competitor VALUES(103, 'SBSeaton100', 'PSSWD', 'Samuel', 'Seaton', NULL);
+INSERT INTO math.competitor VALUES('admin', 'password');
 
 CREATE TABLE math.question (
 	id SERIAL PRIMARY KEY,
-	questiontext VARCHAR(256) NOT NULL,
-	correctanswer_choice_id INT NOT NULL,
-	foil1_choice_id INT,
-	foil2_choice_id INT,
-	foil3_choice_id INT
+	text VARCHAR(256) NOT NULL,
+	value INT DEFAULT 1
 );
 
-INSERT INTO math.question VALUES(301, '$$\frac{2}{3} + \frac{3}{4}$$', 201, 202, 203, 204);
-INSERT INTO math.question VALUES(302, '$$\sin(\frac{\pi}{6})-\cos(\frac{\pi}{4})$$', 205, 206, 207, NULL);
-INSERT INTO math.question VALUES(303, '$$\frac{3}{4} \in \{x|12x^2+17x=-6\}$$', 208, 209, NULL, NULL);
+INSERT INTO math.question VALUES(1, '$$ 1 + 1 = $$', 1);
+INSERT INTO math.question VALUES(2, '$$ 2 + 2 = $$', 1);
+INSERT INTO math.question VALUES(3, '$$ 3 + 3 = $$', 1);
+INSERT INTO math.question VALUES(4, '$$ 4 + 4 = $$', 1);
+INSERT INTO math.question VALUES(5, '$$ 5 + 5 = $$', 1);
+INSERT INTO math.question VALUES(6, '$$ 6 + 6 = $$', 1);
+INSERT INTO math.question VALUES(7, '$$ 7 + 7 = 14 $$', 1);
+INSERT INTO math.question VALUES(8, '$$ 8 + 8 = 13 $$', 1);
+INSERT INTO math.question VALUES(9, '$$ 9 + 9 = 17 $$', 1);
+INSERT INTO math.question VALUES(10, '$$ 10 + 10 = 20 $$', 1);
 
-CREATE TABLE math.submission (
-	competitor_id INT NOT NULL,
-	question_id INT NOT NULL,
-	attime TIMESTAMP NOT NULL,
-	selected_choice_id INT NOT NULL
+CREATE TABLE math.answer (
+	id SERIAL PRIMARY KEY,
+	question_id INT REFERENCES math.question(id),
+	correct BOOLEAN DEFAULT FALSE,
+	text VARCHAR(256) NOT NULL
 );
 
-INSERT INTO math.submission VALUES(101, 302, '2017-02-28 14:47:54.0', 206);
-INSERT INTO math.submission VALUES(103, 301, '2017-02-28 15:07:59.0', 203);
-INSERT INTO math.submission VALUES(102, 303, '2017-02-28 15:07:59.0', 208);
+INSERT INTO math.answer VALUES(1, 1, FALSE, '$$ 1 $$');
+INSERT INTO math.answer VALUES(2, 1, TRUE, '$$ 2 $$');
+INSERT INTO math.answer VALUES(3, 1, FALSE, '$$ 3 $$');
+INSERT INTO math.answer VALUES(4, 1, FALSE, '$$ 4 $$');
 
-\q
+INSERT INTO math.answer VALUES(5, 2, FALSE, '$$ 3 $$');
+INSERT INTO math.answer VALUES(6, 2, TRUE, '$$ 4 $$');
+INSERT INTO math.answer VALUES(7, 2, FALSE, '$$ 5 $$');
+INSERT INTO math.answer VALUES(8, 2, FALSE, '$$ 6 $$');
+
+INSERT INTO math.answer VALUES(9, 3, FALSE, '$$ 3 $$');
+INSERT INTO math.answer VALUES(10, 3, FALSE, '$$ 4 $$');
+INSERT INTO math.answer VALUES(11, 3, FALSE, '$$ 5 $$');
+INSERT INTO math.answer VALUES(12, 3, TRUE, '$$ 6 $$');
+
+INSERT INTO math.answer VALUES(13, 4, TRUE, '$$ 8 $$');
+INSERT INTO math.answer VALUES(14, 4, FALSE, '$$ 9 $$');
+INSERT INTO math.answer VALUES(15, 4, FALSE, '$$ 10 $$');
+INSERT INTO math.answer VALUES(16, 4, FALSE, '$$ 11 $$');
+
+INSERT INTO math.answer VALUES(17, 5, FALSE, '$$ 8 $$');
+INSERT INTO math.answer VALUES(18, 5, FALSE, '$$ 9 $$');
+INSERT INTO math.answer VALUES(19, 5, TRUE, '$$ 10 $$');
+INSERT INTO math.answer VALUES(20, 5, FALSE, '$$ 11 $$');
+
+INSERT INTO math.answer VALUES(21, 6, FALSE, '$$ 10 $$');
+INSERT INTO math.answer VALUES(22, 6, FALSE, '$$ 11 $$');
+INSERT INTO math.answer VALUES(23, 6, TRUE, '$$ 12 $$');
+INSERT INTO math.answer VALUES(24, 6, FALSE, '$$ 13 $$');
+
+INSERT INTO math.answer VALUES(25, 7, TRUE, '$$ TRUE $$');
+INSERT INTO math.answer VALUES(26, 7, FALSE, '$$ FALSE $$');
+
+INSERT INTO math.answer VALUES(27, 8, FALSE, '$$ TRUE $$');
+INSERT INTO math.answer VALUES(28, 8, TRUE, '$$ FALSE $$');
+
+INSERT INTO math.answer VALUES(29, 9, FALSE, '$$ TRUE $$');
+INSERT INTO math.answer VALUES(30, 9, TRUE, '$$ FALSE $$');
+
+INSERT INTO math.answer VALUES(31, 10, TRUE, '$$ TRUE $$');
+INSERT INTO math.answer VALUES(32, 10, FALSE, '$$ FALSE $$');

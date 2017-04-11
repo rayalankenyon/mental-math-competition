@@ -80,11 +80,12 @@ public class Game extends HttpServlet
 	    			rs = st.executeQuery("SELECT value from math.question WHERE id=" + answered_question);
 	    			rs.next();
 	    			int value = rs.getInt(1);
+
+	    			if(correct && current_question <= MAX_QUESTIONS) {
+	    				score += value;
+	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
+	    			}
 	    			if(current_question < MAX_QUESTIONS) {
-		    			if(correct) {
-		    				score += value;
-		    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
-		    			}
 			    		current_question++;
 			    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + " WHERE username='" + session.getAttribute("username") + "'");	   
 	    			} 			
