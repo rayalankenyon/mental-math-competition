@@ -28,13 +28,24 @@ public class Game extends HttpServlet
 
     out.print(html_start());
 
+   	if(request.getParameter('Login') != null); {
+    	out.print("this is the login page");
+    } else if(request.getParameter('CreateAccount') != null) {
+    	out.print("this is the create account page");
+    } else if(request.getParameter('Logout') != null) {
+    	session.invalidate();
+    }
+
+
+
     if(session.isNew()) {
     	out.print("<table><tr><td>");
     	out.print("<a href='/Game?Login'>Login</a> or <a href='/Game?CreateAccount'>create an account.</a>");
     	out.print("</td></tr></table>");
-    }
-    else {
-    	out.print("this is an old session");
+    } else {
+    	out.print("<table><tr><td>");
+    	out.print("<a href='/Game?Logout'>Logout</a>");
+    	out.print("</td></tr></table>");
     }
 
     out.print(html_end());
