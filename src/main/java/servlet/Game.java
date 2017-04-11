@@ -79,8 +79,10 @@ public class Game extends HttpServlet
 	    			rs = st.executeQuery("SELECT value from math.question WHERE id=" + answered_question);
 	    			rs.next();
 	    			int value = rs.getInt(1);
-	    			score += value;
-	    			st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
+	    			if(correct) {
+	    				score += value;
+	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
+	    			}
 		    		current_question++;
 		    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + " WHERE username='" + session.getAttribute("username") + "'");	    			
 	    		}
@@ -91,7 +93,11 @@ public class Game extends HttpServlet
 	    	// logout	
 		    out.print("<table><tr><td>");
 		    out.print("<form action='/?Logout' method='post'><input type='submit' value='Logout'></form>");
-		    out.print("</td></tr></table>");
+		    out.print("</td></tr>");
+		    out.print("<tr><td>");
+		    out.print("<form action='/' method='post'><input type='submit' value='Refresh'></form>");
+		    out.print("</td></tr>");
+		    out.print("</table>");
 		    out.print("<br>");
 
 	    	// question / answers form
