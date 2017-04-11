@@ -25,27 +25,20 @@ public class Game extends HttpServlet
     final PrintWriter  out  =  response.getWriter() ;
     HttpSession session = request.getSession(true);
     session.setMaxInactiveInterval(3600);
-
     out.print(html_start());
-
-   	if(request.getParameter("Login") != null) {
-    	out.print("this is the login page");
-    } else if(request.getParameter("CreateAccount") != null) {
-    	out.print("this is the create account page");
-    } else if(request.getParameter("Logout") != null) {
-    	session.invalidate();
-    }
-
-
 
     if(session.isNew()) {
     	out.print("<table><tr><td>");
-    	out.print("<a href='/Game?Login'>Login</a> or <a href='/Game?CreateAccount'>create an account.</a>");
+    	out.print("<form method='post'>
+	username: <input type='text' name='username' required><br>
+	password: <input type='password' name='password' required><br>
+	<input type='submit' value='Login'> or <input type='button' onclock='' value='Create Account'>
+</form>");
     	out.print("</td></tr></table>");
     } else {
-    	out.print("<table><tr><td>");
-    	out.print("<a href='/Game?Logout'>Logout</a>");
-    	out.print("</td></tr></table>");
+    	// logout
+    	// question / answers form
+    	// scoreboard
     }
 
     out.print(html_end());
