@@ -56,6 +56,7 @@ public class Game extends HttpServlet
 					if(!success) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
+						return;
 					}
 				}
 				session.setAttribute("username", username);
