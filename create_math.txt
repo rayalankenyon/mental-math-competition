@@ -5,7 +5,7 @@ CREATE TABLE math.competitor (
 	username VARCHAR(32) PRIMARY KEY,
 	password VARCHAR(256),
 	score INT DEFAULT 0,
-	questions_answered INT DEFAULT 0
+	current_question INT DEFAULT 1
 );
 
 INSERT INTO math.competitor VALUES('admin', 'password');
