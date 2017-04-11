@@ -36,9 +36,12 @@ public class Game extends HttpServlet
     if(session.isNew()) {
     	out.print("<table><tr><td>");
     	out.print("<form method='post'>");
+    	out.print("<fieldset>");
+    	out.print("<legend>Login or create an account.</legend>");
 		out.print("username: <input type='text' name='username' required><br>");
 		out.print("password: <input type='password' name='password' required><br>");
-		out.print("<input type='submit' value='Login or create account.'>");
+		out.print("<input type='submit' value='Submit'>");
+		out.print("</fieldset>");
 		out.print("</form>");
     	out.print("</td></tr></table>");
     } else {
