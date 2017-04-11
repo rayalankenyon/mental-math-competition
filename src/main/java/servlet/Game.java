@@ -71,7 +71,7 @@ public class Game extends HttpServlet
 	    		int current_question = rs.getInt("current_question");
 	    		int score = rs.getInt("score");
 	    		// check for validity before incrementing questions answered
-	    		rs = st.executeQuery("SELECT, correct, question_id from math.answer WHERE id=" + choice);
+	    		rs = st.executeQuery("SELECT correct, question_id from math.answer WHERE id=" + choice);
 	    		rs.next();
 	    		boolean correct = rs.getBoolean(1);
 	    		int answered_question = rs.getInt(2);
