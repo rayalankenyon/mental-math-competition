@@ -82,7 +82,7 @@ public class Game extends HttpServlet
     	out.print("<br>");
     	
     	// scoreboard
-	    out.print("<tr><th>Username</th><th>Score</th></tr>");
+	    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
 	    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
 	    while(rs.next()) {
 	    	out.print("<tr>");
