@@ -66,7 +66,6 @@ public class Game extends HttpServlet
 				session.setAttribute("username", username);
 	    	}
     	
-
     	// print
     	// logout	
 	    out.print("<table><tr><td>");
@@ -75,10 +74,20 @@ public class Game extends HttpServlet
 	    out.print("<br>");
 
     	// question / answers form
+    	out.print("<table><tr><td>");
+    	int current_question = 1;
+    	rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + current_question);
+    	out.print("<h3>" + rs.getString("text") + "</h3>");
+    	rs = st.executeQuery("SELECT text, correct from math.answer WHERE question_id=" + current_question);
+    	out.print("<form>");
+    	while(rs.next()) {
+    	}
+    	out.print("</form>");
+    	out.print("</td></tr></table>");
+    	out.print("<br>");
     	
     	// scoreboard
-	    out.print("<table><tr><th colspan=2>Scores</th></tr>");
-	    out.print("<tr><td>Username</td><td>Score</td></tr>");
+	    out.print("<tr><th>Username</th><th>Score</th></tr>");
 	    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
 	    while(rs.next()) {
 	    	out.print("<tr>");
@@ -86,7 +95,7 @@ public class Game extends HttpServlet
 	    	out.print("<td>" + rs.getString("score") + "</td>");
 	    	out.print("</tr>");
 	    }
-	    // for loop to print scores in desc order
+
 	    out.print("</table>");
 
     	} catch(SQLException e) {
