@@ -73,6 +73,7 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
+	    	out.print("<form>");
 	    	out.print("<table><tr><th>");
 	    	int current_question = 10;
 	    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
@@ -81,13 +82,14 @@ public class Game extends HttpServlet
 	    	out.print("</th></tr>");
 	    	// while loop
 	    	rs = st.executeQuery("SELECT id, text, correct FROM math.answer WHERE question_id=" + current_question);
-	    	out.print("<form>");
+	    
 	    	while(rs.next()) {
+	    		out.print("<tr><td>");
 	    		out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
-	    		out.print("<br>");
+	    		out.print("</td></tr>");
 	    	}
-	    	out.print("</form>");
 	    	out.print("</table><br>");
+	    	out.print("</form>");
 
 	    	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
