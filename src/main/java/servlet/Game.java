@@ -61,6 +61,19 @@ public class Game extends HttpServlet
 				}
 				session.setAttribute("username", username);
 	    	}
+    	
+
+    	// print
+    	// logout	
+	    out.print("<table><tr><td>");
+	    out.print("<form action='/?Logout'><input type='submit' value='Logout'></form>")
+	    out.print("</td></tr></table>");
+    	// question / answers form
+    	
+    	// scoreboard
+	    out.print("<table><tr><th>Scores</th></tr>");
+	    // for loop to print scores in desc order
+	    out.print("</table>");
 
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
@@ -69,12 +82,15 @@ public class Game extends HttpServlet
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
     	} finally {
-    		// close
+    		try {
+    			if(rs != null) { rs.close(); }
+    			if(st != null) { st.close(); }
+    			if(con != null) { con.close(); }
+    		} catch(SQLException e) { 
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+			}
     	}
-    	// print
-    	// logout	
-    	// question / answers form
-    	// scoreboard
     }
 
     out.print(html_end());
