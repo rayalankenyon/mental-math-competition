@@ -23,6 +23,7 @@ public class Game extends HttpServlet
     {
     response.setContentType ( "text/html" ) ;
     final PrintWriter  out  =  response.getWriter() ;
+    final MAX_QUESTIONS = 10;
     HttpSession session = request.getSession(true);
     session.setMaxInactiveInterval(3600);
     out.print(html_start());
@@ -83,8 +84,10 @@ public class Game extends HttpServlet
 	    				score += value;
 	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
 	    			}
-		    		current_question++;
-		    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + " WHERE username='" + session.getAttribute("username") + "'");	    			
+	    			if(current_question < MAX_QUESTIONS) {
+			    		current_question++;
+			    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + " WHERE username='" + session.getAttribute("username") + "'");	   
+	    			} 			
 	    		}
 
 	    	}
