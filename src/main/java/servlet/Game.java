@@ -29,7 +29,9 @@ public class Game extends HttpServlet
     out.print(html_start());
 
     if(session.isNew()) {
+    	out.print("<table><tr><td>");
     	out.print("<a href='/Game?Login'>Login</a> or <a href='/Game?CreateAccount'>create an account.</a>");
+    	out.print("</td></tr></table>");
     }
     else {
     	out.print("this is an old session");
