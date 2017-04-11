@@ -5,14 +5,14 @@
           xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
                               http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" >
     <servlet>
-        <servlet-name>ShowTable</servlet-name>
-        <servlet-class>ShowTable</servlet-class>
+        <servlet-name>Game</servlet-name>
+        <servlet-class>Game</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ShowTable</servlet-name>
-        <url-pattern>/ShowTable</url-pattern>
+        <servlet-name>Game</servlet-name>
+        <url-pattern>/Game</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>ShowTable</welcome-file>
+        <welcome-file>Game</welcome-file>
     </welcome-file-list>
 </web-app>

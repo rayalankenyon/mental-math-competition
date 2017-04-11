@@ -1,7 +1,6 @@
 /*  ****************************************************************************
-    ShowTable.java        by GR Kenyon MAR 07 2017
-				EDITED FOR EXAM 1 TO INCLUDE TEXTBOOK TABLE
-    This is the ShowTable servlet.  For melody-math web app
+    Game.java        by GR Kenyon APR 11 2017
+    This is the Game servlet.  For mental math web app
     **************************************************************************** */
 
 // ------------------------------------------------------------------------------------ //
@@ -14,7 +13,7 @@ import 	java.sql.*;
 import java.net.*;
 
 // ------------------------------------------------------------------------------------ //
-public class ShowTable extends HttpServlet
+public class Game extends HttpServlet
   {
 
   // ------------------  method to service HTTP POST requests  --------------------- //
@@ -127,7 +126,7 @@ public class ShowTable extends HttpServlet
       "<html>"+
       "<head>"+
         "<meta charset='utf-8'>"+
-        "<title>The melody-math Web App</title>"+
+        "<title>FHSU Mental Math Competition</title>"+
         "<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>"+
         "<style>"+
         "* {"+
@@ -198,30 +197,30 @@ public class ShowTable extends HttpServlet
         "<ul>"+
           "<li class='dropdown'><a href='#'>MELODY</a>"+
             "<div class='dropdown-content'>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=album'>ALBUM</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=band'>BAND</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=genre'>GENRE</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=musician'>MUSICIAN</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=musician_band'>MUSICIAN_BAND</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=salesperson'>SALESPERSON</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=studio'>STUDIO</a>"+
-              "<a href='/ShowTable?SCHEMA=melody&TABLE=track'>TRACK</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=album'>ALBUM</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=band'>BAND</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=genre'>GENRE</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=musician'>MUSICIAN</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=musician_band'>MUSICIAN_BAND</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=salesperson'>SALESPERSON</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=studio'>STUDIO</a>"+
+              "<a href='/Game?SCHEMA=melody&TABLE=track'>TRACK</a>"+
             "</div>"+
           "</li>"+
           "<li class='dropdown'><a href='#'>MATH</a>"+
             "<div class='dropdown-content'>"+
-              "<a href='/ShowTable?SCHEMA=math&TABLE=choice'>CHOICE</a>"+
-              "<a href='/ShowTable?SCHEMA=math&TABLE=competitor'>COMPETITOR</a>"+
-              "<a href='/ShowTable?SCHEMA=math&TABLE=question'>QUESTION</a>"+
-              "<a href='/ShowTable?SCHEMA=math&TABLE=submission'>SUBMISSION</a>"+
+              "<a href='/Game?SCHEMA=math&TABLE=choice'>CHOICE</a>"+
+              "<a href='/Game?SCHEMA=math&TABLE=competitor'>COMPETITOR</a>"+
+              "<a href='/Game?SCHEMA=math&TABLE=question'>QUESTION</a>"+
+              "<a href='/Game?SCHEMA=math&TABLE=submission'>SUBMISSION</a>"+
             "</div>"+
           "</li>"+
 		  "<li class='dropdown'><a href='#'>TEXTBOOK</a>"+
             "<div class='dropdown-content'>"+
-              "<a href='/ShowTable?SCHEMA=textbook&TABLE=author'>AUTHOR</a>"+
-              "<a href='/ShowTable?SCHEMA=textbook&TABLE=author_title'>AUTHOR_TITLE</a>"+
-              "<a href='/ShowTable?SCHEMA=textbook&TABLE=book'>BOOK</a>"+
-              "<a href='/ShowTable?SCHEMA=textbook&TABLE=publisher'>PUBLISHER</a>"+
+              "<a href='/Game?SCHEMA=textbook&TABLE=author'>AUTHOR</a>"+
+              "<a href='/Game?SCHEMA=textbook&TABLE=author_title'>AUTHOR_TITLE</a>"+
+              "<a href='/Game?SCHEMA=textbook&TABLE=book'>BOOK</a>"+
+              "<a href='/Game?SCHEMA=textbook&TABLE=publisher'>PUBLISHER</a>"+
             "</div>"+
           "</li>"+
         "</ul>"+
@@ -235,6 +234,6 @@ public class ShowTable extends HttpServlet
       "</body>"+
       "</html>";
     }
-} // end ShowTable class
+} // end Game class
 
 // ------------------------------------------------------------------------------------ //
