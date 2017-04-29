@@ -5,17 +5,17 @@ CREATE SCHEMA math;
 
 CREATE TABLE math.competitor (
 	username VARCHAR(32) PRIMARY KEY,
-	password VARCHAR(256),
 	score INT DEFAULT 0,
-	current_question INT DEFAULT 1
+	completed BOOLEAN DEFAULT FALSE
 );
 
-INSERT INTO math.competitor VALUES('admin', 'password');
+INSERT INTO math.competitor VALUES('admin');
 
 CREATE TABLE math.question (
 	id SERIAL PRIMARY KEY,
 	text VARCHAR(256) NOT NULL,
 	value INT DEFAULT 1
+	completion_status INT DEFAULT 0
 );
 
 INSERT INTO math.question VALUES(1, '$$ 1 + 1 = $$', 1);
