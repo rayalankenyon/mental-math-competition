@@ -56,7 +56,7 @@ public class Game extends HttpServlet
 	    	if(username != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "'");
 				if(!rs.next()) {
-					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + ", DEFAULT'");
+					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', DEFAULT)");
 					if(status <= 0) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
@@ -71,12 +71,7 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-            int current_question = 0;
-	    	if(question == null) { 
-                current_question = 1;
-            } else { 
-                current_question = Integer.parseInt(question);
-            }
+            int current_question = (question == null) ? 0 : Integer.parseInt(question);
 
 	    	if(choice != null) {
 	    		int score = rs.getInt("score");
@@ -114,7 +109,7 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-	    	if(current_question <= MAX_QUESTIONS) {
+	    	if(current_question < 0) {
 		    	out.print("<form method='post'>");
 		    	out.print("<table><tr><th>");
 		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
@@ -135,7 +130,13 @@ public class Game extends HttpServlet
 		    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
 		    	out.print("</table><br>");
 		    	out.print("</form>");
-	    	}
+	    	} else {
+                // print introduction
+                out.print("<table><tr><th>");
+                out.print("select a question");
+                out.print("</th></tr></table>");
+            }
+
 	    	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
 		    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
