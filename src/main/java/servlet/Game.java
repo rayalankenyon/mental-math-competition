@@ -72,6 +72,7 @@ public class Game extends HttpServlet
 	    	}
 
             int current_question = (question == null) ? 1 : Integer.parseInt(question);
+            out.print(current_question.toString());
 
 	    	if(choice != null) {
 	    		int score = rs.getInt("score");
