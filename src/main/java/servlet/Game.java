@@ -101,7 +101,7 @@ public class Game extends HttpServlet
 	    	// question / answers form
             String question = (String)session.getAttribute("question");
             if(question == null) {
-                out.print("<div class='col-md-6'>");
+                out.print("<div class='col-sm-8'>");
                 out.print("<div class='jumbotron'>");
                 out.print("<h1>Welcome to Gregory Kenyon's Mental Math Competition!</h1>");
                 out.print("<hr>");
