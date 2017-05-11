@@ -182,7 +182,7 @@ public class Game extends HttpServlet
                 String question_id = (String)session.getAttribute("question");
                 rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + question_id);
                 rs.next();
-                out.print("<form method='post'>");
+                out.print("<form action='' method='post'>");
                 out.print("<h3>" + rs.getString("text") + "</h3>");
                 rs = st.executeQuery("SELECT id, text from math.answer WHERE question_id=" + question_id);
                 out.print("<table class='table table-bordered'>");
