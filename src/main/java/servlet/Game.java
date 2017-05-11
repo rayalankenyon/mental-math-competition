@@ -188,6 +188,7 @@ public class Game extends HttpServlet
                     out.print(rs.getString("text"));
                     out.print("</td></tr>");
                 }
+                out.print("</table>");
                 out.print("</form>");
 	    	}
             out.print("</div>");
