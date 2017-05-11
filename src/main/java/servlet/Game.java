@@ -87,12 +87,19 @@ public class Game extends HttpServlet
             rs = st.executeQuery("SELECT id, text, answered FROM math.question WHERE points=2");
             while(rs.next()) {
                 String text = rs.getString("text");
-                int status = 0;
+                int status = -1;
+                String que = (String)session.getAttribute("question");
+                if(que != null) {
+                    String str = (String)session.getAttribute(que);
+                    if(str != null) {
+                            status = Integer.parseInt(str);
+                    }
+                }
                 int id = Integer.parseInt(rs.getString("id"));
                 out.print("<li class='");
-                if(status < 0) {
+                if(status == 0) {
                     out.print("bg-danger");
-                } else if(status > 0) {
+                } else if(status == 1) {
                     out.print("bg-success");
                 }
                 out.print("'><a href='/Game?question=" + id + "'>" + text + "</a></li>");
@@ -220,11 +227,10 @@ public class Game extends HttpServlet
                         rs.next();
                         int s = rs.getInt("score");
                         st.executeUpdate("UPDATE math.competitor SET score=" + (s+p) + " WHERE username='" + session.getAttribute("username") + "'");
+                        session.setAttribute(num, "1"); // RIGHT
                     } else {
-                        // WRONG
+                        session.setAttribute(num, "0"); // WRONG
                     }
-                    // mark question as answered
-                    session.setAttribute(num, "1");
                 }
             }
 
