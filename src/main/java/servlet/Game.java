@@ -262,6 +262,7 @@ public class Game extends HttpServlet
             out.print("</div>");
 
             out.print("</div>");
+            session.commit();
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
