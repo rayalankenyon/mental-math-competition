@@ -42,7 +42,6 @@ public class Game extends HttpServlet
 		out.print("</form>");
     	out.print("</td></tr></table>");
     } else {
-        String question = request.getParameter("question");
     	String username = request.getParameter("username");
     	String choice = request.getParameter("choice");
 	    ResultSet rs = null;
@@ -70,8 +69,6 @@ public class Game extends HttpServlet
 				response.sendRedirect("/");
 				return;
 	    	}
-
-            int current_question = (question == null) ? 0 : Integer.parseInt(question);
 
 	    	if(choice != null) {
 	    		int score = rs.getInt("score");
@@ -109,8 +106,17 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-	    	if(current_question > 0) {
-		    	out.print("<form action='/?question=" + question + "' method='post'>");
+            if(session.getAttribute("question") == null) {
+                if(request.getParameter("question") != null) {
+                    session.setAttribute("question", request.getParameter(question));
+                }
+                // print introduction
+                out.print("<table><tr><th>");
+                out.print("select a question");
+                out.print("</th></tr></table>");                
+            }
+	    	else {
+		    	out.print("<form method='post'>");
 		    	out.print("<table><tr><th>");
 		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
 		    	// rs.next();
@@ -130,12 +136,7 @@ public class Game extends HttpServlet
 		    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
 		    	out.print("</table><br>");
 		    	out.print("</form>");
-	    	} else {
-                // print introduction
-                out.print("<table><tr><th>");
-                out.print("select a question");
-                out.print("</th></tr></table>");
-            }
+	    	}
 
 	    	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
