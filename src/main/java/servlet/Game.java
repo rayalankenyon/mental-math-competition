@@ -71,7 +71,7 @@ public class Game extends HttpServlet
 	    	}
 
 	    	if(choice != null) { // use session to track question #
-                String quest = session.getAttribute("question");
+                String quest = session.getAttribute("question").toString();
                 int current_question = Integer.parseInt(quest);
 
 	    		int score = rs.getInt("score");
