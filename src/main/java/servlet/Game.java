@@ -71,7 +71,8 @@ public class Game extends HttpServlet
 	    	}
 
 	    	if(choice != null) { // use session to track question #
-                int current_question = Integer.parseInt(session.getAttribute("question"));
+                String question_string = session.getAttribute("question");
+                int current_question = Integer.parseInt(question_string);
 	    		int score = rs.getInt("score");
 	    		// check for validity before incrementing questions answered
 	    		rs = st.executeQuery("SELECT correct, question_id from math.answer WHERE id=" + choice);
