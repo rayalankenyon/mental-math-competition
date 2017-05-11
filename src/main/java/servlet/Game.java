@@ -71,7 +71,7 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-
+            out.print("<div class='continer'>");
             // print nav bar
             out.print("<nav class='navbar navbar-default'>");
             out.print("<ul class='nav navbar-nav'>");
@@ -151,6 +151,7 @@ public class Game extends HttpServlet
 		    }
 		    out.print("</table>");
 
+            out.print("</div>");
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
