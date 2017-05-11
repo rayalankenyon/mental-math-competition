@@ -71,7 +71,6 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-            out.print("<div class='continer'>");
             // print nav bar
             out.print("<nav class='navbar navbar-default'>");
             out.print("<ul class='nav navbar-nav'>");
@@ -150,8 +149,6 @@ public class Game extends HttpServlet
 		    	out.print("</tr>");
 		    }
 		    out.print("</table>");
-
-            out.print("</div>");
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
@@ -208,7 +205,7 @@ public class Game extends HttpServlet
         "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>"+
       "</head>"+
       "<body>"+
-      "<div id='content'>";
+      "<div class='container'>";
     }
 
     private static final String html_end() {
