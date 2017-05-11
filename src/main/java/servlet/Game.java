@@ -75,7 +75,7 @@ public class Game extends HttpServlet
 	    	if(question == null) { 
                 current_question = 1;
             } else { 
-                current_question = Integer.parseInt();
+                current_question = Integer.parseInt(question);
             }
 
 	    	if(choice != null) {
