@@ -204,8 +204,11 @@ public class Game extends HttpServlet
             //             update completed status
             if(choice != null) {
                 String num = (String)session.getAttribute("question");
-                boolean question_answered = (session.getAttribute(num) == null) ? 0 : 1;
-                
+                boolean question_answered = false;
+                if(session.getAttribute(num) != null) {
+                    question_answered = true;
+                }
+
                 if(!question_answered) {
                     rs = st.executeQuery("SELECT correct from math.answer WHERE id=" + choice);
                     rs.next();
