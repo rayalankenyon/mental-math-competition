@@ -202,6 +202,25 @@ public class Game extends HttpServlet
             //         else
             //              print wrong answer popup
             //             update completed status
+            if(choice != null) {
+                boolean question_answered = false;
+                if(!question_answered) {
+                    rs = st.executeQuery("SELECT correct from math.answer WHERE id=" + choice);
+                    rs.next();
+                    if(rs.getBoolean("correct")) {
+                        rs = st.executeQuery("SELECT points from math.question WHERE id=" + (String)session.getAttribute("question"));
+                        rs.next();
+                        int p = rs.getInt("points");
+                        rs = st.executeQuery("SELECT score from math.competitor WHERE id=" + (String)session.getAttribute("username"));
+                        rs.next();
+                        int s = rs.getInt("score")
+                        st.executeUpdate("UPDATE math.competitor SET score=" + (s+p) + " WHERE username='" + session.getAttribute("username") + "'");
+                    } else {
+                        // WRONG
+                    }
+                    // mark question as answered
+                }
+            }
 
 	    	// scoreboard
             out.print("<div class='col-sm-4 pull-right'>");
