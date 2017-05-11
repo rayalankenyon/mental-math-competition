@@ -40,7 +40,7 @@ public class Game extends HttpServlet
     	out.print("<form method='post'>");
         out.print("<label for='username'>Please enter a username of your choosing:</label>");
 		out.print("<input class='form-control form-control-lg' type='text' name='username' required><br>");
-		out.print("<input class='form-control form-control-lg' type='submit' value='Login or create an account.'>");
+		out.print("<input class='btn btn-primary' type='submit' value='Submit'>");
 		out.print("</form>");
     } else {
     	String username = request.getParameter("username");
