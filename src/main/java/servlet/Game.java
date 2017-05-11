@@ -209,7 +209,7 @@ public class Game extends HttpServlet
         "<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>"+
         "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>"+
       "</head>"+
-      "<body>"+
+      "<body>";
     }
 
     private static final String html_end() {
