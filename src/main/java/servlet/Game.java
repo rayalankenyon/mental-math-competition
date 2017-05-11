@@ -211,7 +211,7 @@ public class Game extends HttpServlet
                         rs = st.executeQuery("SELECT points from math.question WHERE id=" + (String)session.getAttribute("question"));
                         rs.next();
                         int p = rs.getInt("points");
-                        rs = st.executeQuery("SELECT score from math.competitor WHERE username=" + (String)session.getAttribute("username"));
+                        rs = st.executeQuery("SELECT * from math.competitor WHERE username='" + (String)session.getAttribute("username") + "'");
                         rs.next();
                         int s = rs.getInt("score");
                         st.executeUpdate("UPDATE math.competitor SET score=" + (s+p) + " WHERE username='" + session.getAttribute("username") + "'");
