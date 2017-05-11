@@ -3,8 +3,7 @@ CREATE SCHEMA math;
 
 CREATE TABLE math.competitor (
 	username VARCHAR(32) PRIMARY KEY,
-	score INT DEFAULT 0,
-	current_question INT DEFAULT 0
+	score INT DEFAULT 0
 );
 
 INSERT INTO math.competitor VALUES('gregory', 1000);

@@ -42,6 +42,7 @@ public class Game extends HttpServlet
 		out.print("</form>");
     	out.print("</td></tr></table>");
     } else {
+        String question = request.getParameter("question");
     	String username = request.getParameter("username");
     	String choice = request.getParameter("choice");
 	    ResultSet rs = null;
@@ -55,7 +56,7 @@ public class Game extends HttpServlet
 	    	if(username != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "'");
 				if(!rs.next()) {
-					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + ", DEFAULT, DEFAULT'");//td rmove etra defautl
+					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + ", DEFAULT'");
 					if(status <= 0) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
@@ -70,9 +71,12 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-	    	rs = st.executeQuery("SELECT current_question, score from math.competitor WHERE username='" + session.getAttribute("username") + "'");
-	    	rs.next();
-	    	int current_question = rs.getInt("current_question");
+            int current_question = 0;
+	    	if(question == null) { 
+                current_qeustion = 1;
+            } else { 
+                current_question = Integer.parseInt();
+            }
 
 	    	if(choice != null) {
 	    		int score = rs.getInt("score");
