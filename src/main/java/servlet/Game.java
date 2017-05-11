@@ -35,14 +35,13 @@ public class Game extends HttpServlet
     }
 
     if(session.isNew()) {
-    	out.print("<table><tr><td>");
+        out.print("<h1>Welcome to Greogry Kenyon's Mental Math Competition</h1>");
+        out.print("<hr>");
     	out.print("<form method='post'>");
 		out.print("username: <input type='text' name='username' required><br>");
 		out.print("<input type='submit' value='Login or create an account.'>");
 		out.print("</form>");
-    	out.print("</td></tr></table>");
     } else {
-        String question = request.getParameter("question");
     	String username = request.getParameter("username");
     	String choice = request.getParameter("choice");
 	    ResultSet rs = null;
@@ -56,7 +55,7 @@ public class Game extends HttpServlet
 	    	if(username != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "'");
 				if(!rs.next()) {
-					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', DEFAULT)");
+					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', DEFAULT'");
 					if(status <= 0) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
@@ -71,9 +70,7 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-            int current_question = (question == null) ? 0 : Integer.parseInt(question);
-
-	    	if(choice != null) {
+	    	if(choice != null) { // use session to track question #
 	    		int score = rs.getInt("score");
 	    		// check for validity before incrementing questions answered
 	    		rs = st.executeQuery("SELECT correct, question_id from math.answer WHERE id=" + choice);
@@ -109,12 +106,12 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-	    	if(current_question > 0) {
-		    	out.print("<form action='/?question=" + question + "' method='post'>");
+            if(session.getAttribute("question") == null) {
+                out.print("hahahahah");
+            }
+	    	else {
+		    	out.print("<form method='post'>");
 		    	out.print("<table><tr><th>");
-		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
-		    	// rs.next();
-		    	// int current_question = rs.getInt("current_question");
 		    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
 		    	rs.next();
 		    	out.print(rs.getString("text"));
@@ -130,12 +127,7 @@ public class Game extends HttpServlet
 		    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
 		    	out.print("</table><br>");
 		    	out.print("</form>");
-	    	} else {
-                // print introduction
-                out.print("<table><tr><th>");
-                out.print("select a question");
-                out.print("</th></tr></table>");
-            }
+	    	}
 
 	    	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
@@ -198,9 +190,7 @@ public class Game extends HttpServlet
       "<head>"+
         "<meta charset='utf-8'>"+
         "<title>FHSU Mental Math Competition</title>"+
-        "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>"+
         "<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>"+
-        "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>"+
         "<style>"+
         "* {"+
           "font-family: sans-serif;"+
