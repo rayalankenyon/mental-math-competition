@@ -180,9 +180,10 @@ public class Game extends HttpServlet
                 rs.next();
                 out.print("<form method='post'>");
                 out.print("<p>" + rs.getString("text") + "</p>");
-                rs = st.executeQuery("SELECT id from math.answer WHERE question_id=" + question_id);
+                rs = st.executeQuery("SELECT id, text from math.answer WHERE question_id=" + question_id);
                 while(rs.next()) {
                     out.print("<input type='radio' name='choice' onclick='this.form.submit();' value='" + rs.getString("id") + "'>");
+                    out.print(rs.getString("text"));
                 }
                 out.print("</form>");
 	    	}
