@@ -202,7 +202,7 @@ public class Game extends HttpServlet
         "float: right;"+
         "margin-right: 98px;"+
         "}"+
-        "</style>"
+        "</style>"+
       "</head>"+
       "<body>";
     }
