@@ -76,29 +76,10 @@ public class Game extends HttpServlet
             out.print("<nav class='navbar navbar-default'>");
             out.print("<ul class='nav navbar-nav'>");
             out.print("<li class='dropdown'>");
-            out.print("<a class='dropdown-toggle' href='#'>Easy<span class='caret'></span></a>");
-                out.print("<ul class='dropdown-menu'>");
-                    out.print("<li>test</li>");
-                out.print("</ul>");
-            out.print("</li>");
-            out.print("<li class='dropdown'>");
-            out.print("<a class='dropdown-toggle' href='#'>Medium<span class='caret'></span></a>");
-                out.print("<ul class='dropdown-menu'>");
-                    out.print("<li class='divider'></li>");
-                    out.print("<li class='dropdown-header'>Legend</li>");
-                    out.print("<li class='bg-success'>Green - Answered Correctly</li>");
-                    out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
-                out.print("</ul>");
-            out.print("</li>");
-            out.print("<li class='dropdown'>");
-            out.print("<a class='dropdown-toggle' href='#'>Difficult<span class='caret'></span></a>");
-                out.print("<ul class='dropdown-menu'>");
-                    out.print("<li class='divider'></li>");
-                    out.print("<li class='dropdown-header'>Legend</li>");
-                    out.print("<li class='bg-success'>Green - Answered Correctly</li>");
-                    out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
-                out.print("</ul>");
-            out.print("</li>");
+            out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Easy<span class='caret'></span></a>");
+            out.print("<ul class='dropdown_menu'>");
+                out.print("<li>test</li>");
+            out.print("</ul></li>")
             out.print("</ul>");
 
             out.print("<ul class='nav navbar-nav navbar-right pull-right'><li>");
