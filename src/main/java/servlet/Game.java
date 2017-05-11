@@ -101,12 +101,14 @@ public class Game extends HttpServlet
 	    	// question / answers form
             String question = (String)session.getAttribute("question");
             if(question == null) {
-                out.print("<div class='col-md-6'>");
+                out.print("<div class='col-lg-4'>");
+                out.print("div class='jumbotron'>");
                 out.print("<h1>Welcome to Gregory Kenyon's Mental Math Competition!</h1>");
                 out.print("<hr>");
                 out.print("<p>Neither calculator nor scratchpaper are permitted. You get one guess for each question.</p>");
                 out.print("<hr>");
                 out.print("<p>To begin, select a question from a drop-down menu above -- Easy, Medium or Difficult</p>");
+                out.print("</div>");
                 out.print("</div>");
             }
 	    	else {
