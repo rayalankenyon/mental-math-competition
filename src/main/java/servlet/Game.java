@@ -38,7 +38,8 @@ public class Game extends HttpServlet
         out.print("<h1>Welcome to Greogry Kenyon's Mental Math Competition</h1>");
         out.print("<hr>");
     	out.print("<form method='post'>");
-		out.print("username: <input type='text' name='username' required><br>");
+        out.print("<label for='username'>Please enter a username of your choosing:</label>");
+		out.print("<input type='text' name='username' required><br>");
 		out.print("<input type='submit' value='Login or create an account.'>");
 		out.print("</form>");
     } else {
