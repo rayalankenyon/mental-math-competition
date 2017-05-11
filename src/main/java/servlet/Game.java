@@ -71,6 +71,26 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
+
+            // print nav bar
+            out.print("<nav class='navbar navbar-default'>");
+            out.print("<ul class='nav navbar-nav'>");
+            out.print("<li class='dropdown'>");
+            out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Easy<span class='caret'></span></a>");
+            // todo
+            out.print("</li>");
+            out.print("<li class='dropdown'>");
+            out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Medium<span class='caret'></span></a>");
+            // todo
+            out.print("</li>");
+            out.print("<li class='dropdown'>");
+            out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Difficult<span class='caret'></span></a>");
+            // todo
+            out.print("</li>");
+
+            out.print("</ul>");
+            out.print("</nav>");
+
 	    	// print
 	    	// logout	
 		    out.print("<table><tr><td>");
@@ -81,6 +101,7 @@ public class Game extends HttpServlet
 		    out.print("</td></tr>");
 		    out.print("</table>");
 		    out.print("<br>");
+
 
 	    	// question / answers form
             String question = session.getAttribute("question").toString();
