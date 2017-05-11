@@ -144,7 +144,7 @@ public class Game extends HttpServlet
             out.print("<div class='col-sm-4 pull-right'>");
             out.print("<div class='jumbotron'>");
             out.print("<div class='panel panel-default'>");
-            out.print("<div class='panel-heading'><p>Scoreboard</p></div>");
+            out.print("<div class='panel-heading'>Scoreboard</div>");
             out.print("<div class='panel-body panel-height'>");
             out.print("<div class='container-fluid'>");
             out.print("<div class='table-responsive'>");
