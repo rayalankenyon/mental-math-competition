@@ -71,7 +71,7 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-            int current_question = (question == null) ? 0 : Integer.parseInt(question);
+            int current_question = (question == null) ? 1 : Integer.parseInt(question);
 
 	    	if(choice != null) {
 	    		int score = rs.getInt("score");
