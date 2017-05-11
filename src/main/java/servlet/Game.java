@@ -81,7 +81,9 @@ public class Game extends HttpServlet
             out.print("<ul class='dropdown-menu'>");
             out.print("<li><a href='#'>Action</a></li>");
             out.print("<li class='divider'></li>");
-            out.print("<li><a href='#'>Separated link</a></li>");
+            out.print("<li class='dropdown-header'>Legend</li>")
+            out.print("<li class='bg-success'>Green - Answered Correctly</li>");
+            out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
             out.print("</ul>");
             out.print("</li>");
             out.print("</ul>");
