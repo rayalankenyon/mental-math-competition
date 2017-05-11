@@ -70,6 +70,7 @@ public class Game extends HttpServlet
 				response.sendRedirect("/");
 				return;
 	    	}
+            out.print("<div class='container'>");
 
             // print nav bar
             out.print("<nav class='navbar navbar-default'>");
@@ -149,6 +150,8 @@ public class Game extends HttpServlet
 		    	out.print("</tr>");
 		    }
 		    out.print("</table>");
+
+            out.print("</div>");
     	} catch(SQLException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
@@ -210,7 +213,6 @@ public class Game extends HttpServlet
 
     private static final String html_end() {
       return "" + 
-      "</div>"+
       "</body>"+
       "</html>";
     }
