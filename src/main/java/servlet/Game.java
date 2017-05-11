@@ -71,9 +71,6 @@ public class Game extends HttpServlet
 	    	}
 
 	    	if(choice != null) { // use session to track question #
-                String quest = session.getAttribute("question").toString();
-                int current_question = Integer.parseInt(quest);
-
 	    		int score = rs.getInt("score");
 	    		// check for validity before incrementing questions answered
 	    		rs = st.executeQuery("SELECT correct, question_id from math.answer WHERE id=" + choice);
@@ -88,14 +85,23 @@ public class Game extends HttpServlet
 	    			if(correct) {
 	    				score += value;
 	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
-	    			}
-	    			if(current_question <= MAX_QUESTIONS) {
-			    		current_question++;
-			    		st.executeUpdate("UPDATE math.competitor SET current_question=" + current_question + " WHERE username='" + session.getAttribute("username") + "'");	   
-	    			} 			
+
+	    			} else {
+                        // you got this question wrong
+                    }	
 	    		}
 
 	    	}
+
+            // if chioce != null
+            //     if question not answered
+            //         if choice correct
+            //             increment score
+            //             update completed status
+            //             print correct answer popup
+            //         else
+            //              print wrong answer popup
+            //             update completed status
 
 	    	// print
 	    	// logout	

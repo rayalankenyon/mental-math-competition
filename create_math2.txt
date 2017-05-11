@@ -17,7 +17,7 @@ CREATE TABLE math.question (
 	answered BOOLEAN DEFAULT FALSE
 );
 
-INSERT INTO math.question(id, text, points) VALUES(1, '\( 0.4\times 160 \)', 2);
+INSERT INTO math.question(id, text, points) VALUES(1, '\( 0.4 \times 160 \)', 2);
 INSERT INTO math.question(id, text, points) VALUES(2, '\( 2^{12} \)', 2);
 INSERT INTO math.question(id, text, points) VALUES(3, '\( e^{2}>9 \)', 2);
 INSERT INTO math.question(id, text, points) VALUES(4, '\( 3\ |\ 85203 \)', 2);
@@ -28,7 +28,7 @@ INSERT INTO math.question(id, text, points) VALUES(8, '\( 35\%\ \ of\ \ 480 \)',
 INSERT INTO math.question(id, text, points) VALUES(9, '\( f\left( 3\right)\ \ \text{if}\ \ f\left( x\right) =2x^{2}-10x+1 \)', 2);
 INSERT INTO math.question(id, text, points) VALUES(10, '\( \sin \left( \dfrac {\pi } {6}\right) +\cos \left( \dfrac {\pi } {3}\right)  \)', 2);
 
-INSERT INTO math.question(id, text, points) VALUES(11. '\( 58\times 62 \)', 3);
+INSERT INTO math.question(id, text, points) VALUES(11, '\( 58 \times 62 \)', 3);
 INSERT INTO math.question(id, text, points) VALUES(12, '\( m\ \ \text{if}\ \ P_{1}=\left( 16,18\right) \land P_{2}=\left( 9,60\right)  \)', 3);
 INSERT INTO math.question(id, text, points) VALUES(13, '\( x\ \lt\ 0\ \land \left| 2x-1\right| =5 \)', 3);
 INSERT INTO math.question(id, text, points) VALUES(14, '\( 5-12y\ \lt\ -11 \)', 3);
