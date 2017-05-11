@@ -82,8 +82,8 @@ public class Game extends HttpServlet
             out.print("<li><a href='#'>Action</a></li>");
             out.print("<li class='divider'></li>");
             out.print("<li><a href='#'>Separated link</a></li>");
-          </ul>
-        </li>
+            out.print("</ul>");
+            out.print("</li>");
             out.print("</ul>");
 
             out.print("<ul class='nav navbar-nav navbar-right pull-right'><li>");
