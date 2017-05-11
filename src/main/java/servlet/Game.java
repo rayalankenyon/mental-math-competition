@@ -176,70 +176,9 @@ public class Game extends HttpServlet
       "<head>"+
         "<meta charset='utf-8'>"+
         "<title>FHSU Mental Math Competition</title>"+
+        "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>"+
         "<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>"+
-        "<style>"+
-        "* {"+
-          "font-family: sans-serif;"+
-        "}"+
-        "ul {"+
-            "list-style-type: none;"+
-            "margin: 0;"+
-            "padding: 0;"+
-            "overflow: hidden;"+
-            "background-color: #333;"+
-        "}"+
-        "li {"+
-            "float: left;"+
-        "}"+
-        "li a, .dropbtn {"+
-            "display: inline-block;"+
-            "color: white;"+
-            "text-align: center;"+
-            "padding: 14px 16px;"+
-            "text-decoration: none;"+
-        "}"+
-        "li a:hover, .dropdown:hover .dropbtn {"+
-            "background-color: grey;"+
-        "}"+
-        "li.dropdown {"+
-            "display: inline-block;"+
-        "}"+
-        ".dropdown-content {"+
-            "display: none;"+
-            "position: absolute;"+
-            "background-color: #f9f9f9;"+
-            "min-width: 160px;"+
-            "box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);"+
-            "z-index: 1;"+
-        "}"+
-        ".dropdown-content a {"+
-            "color: black;"+
-            "padding: 12px 16px;"+
-            "text-decoration: none;"+
-            "display: block;"+
-            "text-align: left;"+
-        "}"+
-        ".dropdown-content a:hover {background-color: #f1f1f1}"+
-        ".dropdown:hover .dropdown-content {"+
-            "display: block;"+
-        "}"+
-        "#content {"+
-          "width: 100%;"+
-          "margin: 0 auto;"+
-        "}"+
-		"table, th, td {  margin:5px; padding: 5px; outline: 1px solid black; border-spacing: 5px; border-collapse: separate; }"+
-		"th { vertical-align: center; }"+
-		"h1 {"+
-			"height:400px;"+
-			"line-height: 400px;"+
-			"text-align: center;"+
-		"}"+
-		"h6 {"+
-			"margin: 5px;"+
-		"}"+
-		"p { text-align: center; margin: 5px;}"+
-		"table { margin: 0 auto;}"+
-        "</style>"+
+        "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>"+
       "</head>"+
       "<body>"+
       "<div id='content'>";
