@@ -75,7 +75,6 @@ public class Game extends HttpServlet
             // print nav bar
             out.print("<nav class='navbar navbar-default'>");
             out.print("<ul class='nav navbar-nav'>");
-            out.print("<li>");
             out.print("<li class='dropdown'>");
             out.print("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>Easy<b class='caret'></b></a>");
             out.print("<ul class='dropdown-menu'>");
@@ -86,6 +85,29 @@ public class Game extends HttpServlet
             out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
             out.print("</ul>");
             out.print("</li>");
+
+            out.print("<li class='dropdown'>");
+            out.print("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>Medium<b class='caret'></b></a>");
+            out.print("<ul class='dropdown-menu'>");
+            out.print("<li><a href='#'>Todo</a></li>");
+            out.print("<li class='divider'></li>");
+            out.print("<li class='dropdown-header'>Legend</li>");
+            out.print("<li class='bg-success'>Green - Answered Correctly</li>");
+            out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
+            out.print("</ul>");
+            out.print("</li>");
+
+            out.print("<li class='dropdown'>");
+            out.print("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>Difficult<b class='caret'></b></a>");
+            out.print("<ul class='dropdown-menu'>");
+            out.print("<li><a href='#'>Todo</a></li>");
+            out.print("<li class='divider'></li>");
+            out.print("<li class='dropdown-header'>Legend</li>");
+            out.print("<li class='bg-success'>Green - Answered Correctly</li>");
+            out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
+            out.print("</ul>");
+            out.print("</li>");
+
             out.print("</ul>");
 
             out.print("<ul class='nav navbar-nav navbar-right pull-right'><li>");
