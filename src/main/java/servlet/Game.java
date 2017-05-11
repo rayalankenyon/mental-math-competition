@@ -43,6 +43,7 @@ public class Game extends HttpServlet
 		out.print("<input class='btn btn-primary' type='submit' value='Submit'>");
 		out.print("</form>");
     } else {
+        String question = request.getParameter("question");
     	String username = request.getParameter("username");
     	String choice = request.getParameter("choice");
 	    ResultSet rs = null;
@@ -70,6 +71,10 @@ public class Game extends HttpServlet
 				response.sendRedirect("/");
 				return;
 	    	}
+            if(question != null) {
+                session.setAttribute("question", question);
+            }
+
             out.print("<div class='container'>");
 
             // print nav bar
@@ -79,17 +84,18 @@ public class Game extends HttpServlet
             out.print("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>Easy<b class='caret'></b></a>");
             out.print("<ul class='dropdown-menu'>");
             //out.print("<li><a href='#'>Todo</a></li>");
-            rs = st.executeQuery("SELECT text, answered FROM math.question WHERE points=2");
+            rs = st.executeQuery("SELECT id, text, answered FROM math.question WHERE points=2");
             while(rs.next()) {
                 String text = rs.getString("text");
-                int status = Integer.parseInt(rs.getString("answered"));
+                int status = 0;
+                int id = Integer.parseInt(rs.getString("id"));
                 out.print("<li class='");
                 if(status < 0) {
                     out.print("bg-danger");
                 } else if(status > 0) {
                     out.print("bg-success");
                 }
-                out.print("'>" + text + "</li>");
+                out.print("'><a href='/Game?question=" + id + "'>" + text + "</a></li>");
             }
 
             out.print("<li class='divider'></li>");
