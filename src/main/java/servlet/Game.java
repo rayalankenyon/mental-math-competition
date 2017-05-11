@@ -146,6 +146,7 @@ public class Game extends HttpServlet
             out.print("<div class='panel panel-default'>");
             out.print("<div class='panel-heading'><p>Scoreboard</p></div>");
             out.print("<div class='panel-body panel-height'>");
+            out.print("<div class='container-fluid'>");
             out.print("<div class='table-responsive'>");
 		    out.print("<table class='table'><tr><th>Competitor</th><th>Points</th></tr>");
 		    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
@@ -156,6 +157,7 @@ public class Game extends HttpServlet
 		    	out.print("</tr>");
 		    }
 		    out.print("</table>");
+            out.print("</div>");
             out.print("</div>");
             out.print("</div>");
             out.print("</div>");
