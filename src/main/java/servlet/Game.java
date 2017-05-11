@@ -70,39 +70,6 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-	    	if(choice != null) { // use session to track question #
-	    		int score = rs.getInt("score");
-	    		// check for validity before incrementing questions answered
-	    		rs = st.executeQuery("SELECT correct, question_id from math.answer WHERE id=" + choice);
-	    		rs.next();
-	    		boolean correct = rs.getBoolean(1);
-	    		int answered_question = rs.getInt(2);
-	    		if(answered_question == current_question) {
-	    			rs = st.executeQuery("SELECT value from math.question WHERE id=" + answered_question);
-	    			rs.next();
-	    			int value = rs.getInt(1);
-
-	    			if(correct) {
-	    				score += value;
-	    				st.executeUpdate("UPDATE math.competitor SET score=" + score + " WHERE username='" + session.getAttribute("username") + "'");
-
-	    			} else {
-                        // you got this question wrong
-                    }	
-	    		}
-
-	    	}
-
-            // if chioce != null
-            //     if question not answered
-            //         if choice correct
-            //             increment score
-            //             update completed status
-            //             print correct answer popup
-            //         else
-            //              print wrong answer popup
-            //             update completed status
-
 	    	// print
 	    	// logout	
 		    out.print("<table><tr><td>");
@@ -137,6 +104,15 @@ public class Game extends HttpServlet
 		    	out.print("</table><br>");
 		    	out.print("</form>");
 	    	}
+            // if chioce != null
+            //     if question not answered
+            //         if choice correct
+            //             increment score
+            //             update completed status
+            //             print correct answer popup
+            //         else
+            //              print wrong answer popup
+            //             update completed status
 
 	    	// scoreboard
 		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
