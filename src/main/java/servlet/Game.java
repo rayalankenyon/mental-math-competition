@@ -139,37 +139,20 @@ public class Game extends HttpServlet
             out.print("<div class='row'>");
 
 	    	// question / answers form
-            String question = (String)session.getAttribute("question");
-            if(question == null) {
-                out.print("<div class='col-sm-8 pull-left'>");
-                out.print("<div class='jumbotron'>");
+            out.print("<div class='col-sm-8 pull-left'>");
+            out.print("<div class='jumbotron'>");
+            if(session.getAttribute("question") == null) {
                 out.print("<h1>Welcome to Gregory Kenyon's Mental Math Competition!</h1>");
                 out.print("<hr>");
                 out.print("<p>Neither calculator nor scratchpaper are permitted. You get one guess for each question.</p>");
                 out.print("<hr>");
                 out.print("<p>To begin, select a question from a drop-down menu above -- Easy, Medium or Difficult</p>");
-                out.print("</div>");
-                out.print("</div>");
             }
 	    	else {
-		    	// out.print("<form method='post'>");
-		    	// out.print("<table><tr><th>");
-		    	// rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
-		    	// rs.next();
-		    	// out.print(rs.getString("text"));
-		    	// out.print("</th></tr>");
-		    	// // while loop
-		    	// rs = st.executeQuery("SELECT id, text, correct FROM math.answer WHERE question_id=" + current_question);
-		    
-		    	// while(rs.next()) {
-		    	// 	out.print("<tr><td>");
-		    	// 	out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
-		    	// 	out.print("</td></tr>");
-		    	// }
-		    	// out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
-		    	// out.print("</table><br>");
-		    	// out.print("</form>");
+                out.print("<h1>" + question + "</h1>");
 	    	}
+            out.print("</div>");
+            out.print("</div>");            
             // if chioce != null
             //     if question not answered
             //         if choice correct
