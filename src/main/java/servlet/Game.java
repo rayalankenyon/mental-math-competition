@@ -96,7 +96,7 @@ public class Game extends HttpServlet
 
 
 	    	// question / answers form
-            String question = session.getAttribute("question").toString();
+            String question = (String)session.getAttribute("question");
             if(question == null) {
                 out.print("welcome to gregory kenyon's mental math compettition");
             }
