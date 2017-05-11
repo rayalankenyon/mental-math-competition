@@ -223,6 +223,7 @@ public class Game extends HttpServlet
         "margin-right: 25px;"+
         "}"+
         ".panel-height { height: 350px; }"+
+        ".panel { overflow:auto; } "+
         "</style>"+
       "</head>"+
       "<body>";
