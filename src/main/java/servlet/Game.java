@@ -110,7 +110,7 @@ public class Game extends HttpServlet
 
 	    	// question / answers form
 	    	if(current_question > 0) {
-		    	out.print("<form action='/?question=" + question + "' method='post'>");
+		    	out.print("<form action='/?question=" + question + "' method='post'>")
 		    	out.print("<table><tr><th>");
 		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
 		    	// rs.next();
@@ -198,7 +198,9 @@ public class Game extends HttpServlet
       "<head>"+
         "<meta charset='utf-8'>"+
         "<title>FHSU Mental Math Competition</title>"+
+        "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>"+
         "<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>"+
+        "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>"+
         "<style>"+
         "* {"+
           "font-family: sans-serif;"+
