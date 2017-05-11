@@ -203,12 +203,14 @@ public class Game extends HttpServlet
             //              print wrong answer popup
             //             update completed status
             if(choice != null) {
-                boolean question_answered = false;
+                String num = (String)session.getAttribute("question");
+                boolean question_answered = (session.getAttribute(num) == null) ? 0 : 1;
+                
                 if(!question_answered) {
                     rs = st.executeQuery("SELECT correct from math.answer WHERE id=" + choice);
                     rs.next();
                     if(rs.getBoolean("correct")) {
-                        rs = st.executeQuery("SELECT points from math.question WHERE id=" + (String)session.getAttribute("question"));
+                        rs = st.executeQuery("SELECT points from math.question WHERE id=" + num);
                         rs.next();
                         int p = rs.getInt("points");
                         rs = st.executeQuery("SELECT * from math.competitor WHERE username='" + (String)session.getAttribute("username") + "'");
@@ -219,6 +221,7 @@ public class Game extends HttpServlet
                         // WRONG
                     }
                     // mark question as answered
+                    session.setAttribute(num, "1");
                 }
             }
 
