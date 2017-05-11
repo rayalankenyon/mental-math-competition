@@ -89,9 +89,11 @@ public class Game extends HttpServlet
             out.print("</li>");
             out.print("</ul>");
 
+            out.print("<div class='container'>");
             out.print("<ul class='nav navbar-nav navbar-right'><li>");
             out.print("<form class='form-inline' action='/' method='post'><input class='btn btn-primary' type='submit' value='Refresh'></form>");
             out.print("</li></ul>");
+            out.print("</div>");
             out.print("</nav>");
 
 	    	// print
@@ -208,7 +210,6 @@ public class Game extends HttpServlet
         "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>"+
       "</head>"+
       "<body>"+
-      "<div class='container'>";
     }
 
     private static final String html_end() {
