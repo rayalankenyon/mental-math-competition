@@ -101,7 +101,7 @@ public class Game extends HttpServlet
 	    	// question / answers form
             String question = (String)session.getAttribute("question");
             if(question == null) {
-                out.print("<div class='col-sm-8'>");
+                out.print("<div class='col-sm-8 pull-left'>");
                 out.print("<div class='jumbotron'>");
                 out.print("<h1>Welcome to Gregory Kenyon's Mental Math Competition!</h1>");
                 out.print("<hr>");
@@ -141,7 +141,9 @@ public class Game extends HttpServlet
             //             update completed status
 
 	    	// scoreboard
-		    out.print("<table><tr><th>Username</th><th>Score</th></tr>");
+            out.print("<div class='col-sm-4 pull-right'>");
+            out.print("<div class='table-responsive'>")
+		    out.print("<table class='table'><tr><th>Competitor</th><th>Points</th></tr>");
 		    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
 		    while(rs.next()) {
 		    	out.print("<tr>");
@@ -150,6 +152,8 @@ public class Game extends HttpServlet
 		    	out.print("</tr>");
 		    }
 		    out.print("</table>");
+            out.print("</div>");
+            out.print("</div>");
 
             out.print("</div>");
     	} catch(SQLException e) {
