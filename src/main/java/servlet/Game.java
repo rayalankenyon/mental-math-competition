@@ -82,7 +82,7 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-            String question = session.getAttribute("question");
+            String question = session.getAttribute("question").toString();
             if(question == null) {
                 out.print("welcome to gregory kenyon's mental math compettition");
             }
