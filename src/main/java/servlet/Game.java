@@ -90,7 +90,7 @@ public class Game extends HttpServlet
             out.print("</ul>");
 
             out.print("<div class='container'>");
-            out.print("<form class='nav navbar-nav navbar-right' action='/' method='post'><input class='btn btn-primary' type='submit' value='Refresh'></form>");
+            out.print("<form class='navbar-form navbar-right' action='/' method='post'><input class='form-control btn btn-primary' type='submit' value='Refresh'></form>");
             out.print("</div>");
             out.print("</nav>");
 
