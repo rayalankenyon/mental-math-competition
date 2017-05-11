@@ -78,7 +78,20 @@ public class Game extends HttpServlet
             out.print("<li class='dropdown'>");
             out.print("<a href='#' class='dropdown-toggle' data-toggle='dropdown'>Easy<b class='caret'></b></a>");
             out.print("<ul class='dropdown-menu'>");
-            out.print("<li><a href='#'>Todo</a></li>");
+            //out.print("<li><a href='#'>Todo</a></li>");
+            rs = st.executeQuery("SELECT text, answered FROM math.question WHERE points=2");
+            while(rs.next()) {
+                String text = rs.getString("text");
+                int status = Integer.parseInt(rs.getString("answered"));
+                out.print("<li class='");
+                if(status < 0) {
+                    out.print("bg-danger");
+                } else if(status > 0) {
+                    out.print("bg-success");
+                }
+                out.print("'>" + text + "</li>");
+            }
+
             out.print("<li class='divider'></li>");
             out.print("<li class='dropdown-header'>Legend</li>");
             out.print("<li class='bg-success'>Green - Answered Correctly</li>");

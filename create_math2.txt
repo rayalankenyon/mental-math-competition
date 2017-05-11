@@ -14,7 +14,7 @@ CREATE TABLE math.question (
 	id SERIAL PRIMARY KEY,
 	text VARCHAR(256) NOT NULL,
 	points INT NOT NULL,
-	answered BOOLEAN DEFAULT FALSE
+	answered INT DEFAULT 0
 );
 
 INSERT INTO math.question(id, text, points) VALUES(1, '\( 0.4 \times 160 \)', 2);
