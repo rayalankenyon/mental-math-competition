@@ -1,5 +1,5 @@
 /*  ****************************************************************************
-    Game.java        by GR Kenyon APR 11 2017
+    Game.java        by GR Kenyon MAY 11 2017
     This is the Game servlet.  For mental math web app
     **************************************************************************** */
 
@@ -38,13 +38,11 @@ public class Game extends HttpServlet
     	out.print("<table><tr><td>");
     	out.print("<form method='post'>");
 		out.print("username: <input type='text' name='username' required><br>");
-		out.print("password: <input type='password' name='password' required><br>");
 		out.print("<input type='submit' value='Login or create an account.'>");
 		out.print("</form>");
     	out.print("</td></tr></table>");
     } else {
     	String username = request.getParameter("username");
-    	String password = request.getParameter("password");
     	String choice = request.getParameter("choice");
 	    ResultSet rs = null;
 		Statement st = null;
@@ -55,9 +53,9 @@ public class Game extends HttpServlet
 	    	st = con.createStatement();
 
 	    	if(username != null && password != null) {
-				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "' and password='" + password + "'");
+				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "'");
 				if(!rs.next()) {
-					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', '"+ password + "')");
+					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + ", DEFAULT'");
 					if(status <= 0) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
