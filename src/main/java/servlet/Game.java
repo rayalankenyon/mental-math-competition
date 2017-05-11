@@ -95,12 +95,19 @@ public class Game extends HttpServlet
             out.print("</form>");
             out.print("</li></ul>");
             out.print("</nav>");
-
+            
+            out.print("<div class='row'>");
 
 	    	// question / answers form
             String question = (String)session.getAttribute("question");
             if(question == null) {
-                out.print("welcome to gregory kenyon's mental math compettition");
+                out.print("<div class='col-md-6'>");
+                out.print("<h1>Welcome to Gregory Kenyon's Mental Math Competition!</h1>");
+                out.print("<hr>");
+                out.print("<p>Neither calculator nor scratchpaper are permitted. You get one guess for each question.</p>");
+                out.print("<hr>");
+                out.print("<p>To begin, select a question from a drop-down menu above -- Easy, Medium or Difficult</p>");
+                out.print("</div>");
             }
 	    	else {
 		    	// out.print("<form method='post'>");
@@ -200,7 +207,7 @@ public class Game extends HttpServlet
         "<style>"+
         ".navbar .nav.pull-right {"+
         "float: right;"+
-        "margin-right: 50px;"+
+        "margin-right: 25px;"+
         "}"+
         "</style>"+
       "</head>"+
