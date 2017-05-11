@@ -90,7 +90,7 @@ public class Game extends HttpServlet
                 int status = -1;
                 String code = session.getAttribute(rs.getString("id"));
                 if(code != null) {
-                    status = Integer.paseInt(code);
+                    status = Integer.parseInt(code);
                 }
                 int id = Integer.parseInt(rs.getString("id"));
                 out.print("<li class='");
