@@ -82,27 +82,28 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-            if(session.getAttribute("question") == null) {
-                out.print("hahahahah");
+            String question = session.getAttribute("question");
+            if(question == null) {
+                out.print("welcome to gregory kenyon's mental math compettition");
             }
 	    	else {
-		    	out.print("<form method='post'>");
-		    	out.print("<table><tr><th>");
-		    	rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
-		    	rs.next();
-		    	out.print(rs.getString("text"));
-		    	out.print("</th></tr>");
-		    	// while loop
-		    	rs = st.executeQuery("SELECT id, text, correct FROM math.answer WHERE question_id=" + current_question);
+		    	// out.print("<form method='post'>");
+		    	// out.print("<table><tr><th>");
+		    	// rs = st.executeQuery("SELECT text from math.question WHERE id=" + current_question);
+		    	// rs.next();
+		    	// out.print(rs.getString("text"));
+		    	// out.print("</th></tr>");
+		    	// // while loop
+		    	// rs = st.executeQuery("SELECT id, text, correct FROM math.answer WHERE question_id=" + current_question);
 		    
-		    	while(rs.next()) {
-		    		out.print("<tr><td>");
-		    		out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
-		    		out.print("</td></tr>");
-		    	}
-		    	out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
-		    	out.print("</table><br>");
-		    	out.print("</form>");
+		    	// while(rs.next()) {
+		    	// 	out.print("<tr><td>");
+		    	// 	out.print("<input type='radio' name='choice' value='" + rs.getString("id") + "' required>" + rs.getString("text"));
+		    	// 	out.print("</td></tr>");
+		    	// }
+		    	// out.print("<tr><td><input type='submit' value='Submit'></td></tr>");
+		    	// out.print("</table><br>");
+		    	// out.print("</form>");
 	    	}
             // if chioce != null
             //     if question not answered
