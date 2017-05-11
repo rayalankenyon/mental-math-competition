@@ -88,7 +88,7 @@ public class Game extends HttpServlet
             while(rs.next()) {
                 String text = rs.getString("text");
                 int status = -1;
-                String code = session.getAttribute(rs.getString("id"));
+                String code = (String)session.getAttribute(rs.getString("id"));
                 if(code != null) {
                     status = Integer.parseInt(code);
                 }
