@@ -143,10 +143,9 @@ public class Game extends HttpServlet
 	    	// scoreboard
             out.print("<div class='col-sm-4 pull-right'>");
             out.print("<div class='jumbotron'>");
-            out.print("<div class='col-sm-4'>");
             out.print("<div class='panel panel-default'>");
             out.print("<div class='panel-heading'><p>Scoreboard</p></div>");
-            out.print("<div class='panel-body'>");
+            out.print("<div class='panel-body panel-height'>");
             out.print("<div class='table-responsive'>");
 		    out.print("<table class='table'><tr><th>Competitor</th><th>Points</th></tr>");
 		    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
@@ -157,7 +156,6 @@ public class Game extends HttpServlet
 		    	out.print("</tr>");
 		    }
 		    out.print("</table>");
-            out.print("</div>");
             out.print("</div>");
             out.print("</div>");
             out.print("</div>");
@@ -222,6 +220,7 @@ public class Game extends HttpServlet
         "float: right;"+
         "margin-right: 25px;"+
         "}"+
+        ".panel-height { height: 350px; }"+
         "</style>"+
       "</head>"+
       "<body>";
