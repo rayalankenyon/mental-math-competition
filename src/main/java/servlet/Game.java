@@ -175,7 +175,7 @@ public class Game extends HttpServlet
                 out.print("<p>To begin, select a question from a drop-down menu above -- Easy, Medium or Difficult</p>");
             }
 	    	else {
-                String question_id = session.getString("question");
+                String question_id = session.getAttribute("question");
                 rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + question_id);
                 rs.next();
                 out.print("<h1>" + rs.getString("text") + "</h1>");
