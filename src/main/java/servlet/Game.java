@@ -110,7 +110,7 @@ public class Game extends HttpServlet
 
 	    	// question / answers form
 	    	if(current_question > 0) {
-		    	out.print("<form action='/?question='" + question + " method='post'>");
+		    	out.print("<form action='/?question='" + question + "' method='post'>");
 		    	out.print("<table><tr><th>");
 		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
 		    	// rs.next();
