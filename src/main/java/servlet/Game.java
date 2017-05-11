@@ -102,7 +102,7 @@ public class Game extends HttpServlet
             String question = (String)session.getAttribute("question");
             if(question == null) {
                 out.print("<div class='col-lg-4'>");
-                out.print("div class='jumbotron'>");
+                out.print("<div class='jumbotron'>");
                 out.print("<h1>Welcome to Gregory Kenyon's Mental Math Competition!</h1>");
                 out.print("<hr>");
                 out.print("<p>Neither calculator nor scratchpaper are permitted. You get one guess for each question.</p>");
