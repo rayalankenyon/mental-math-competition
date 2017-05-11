@@ -74,6 +74,32 @@ public class Game extends HttpServlet
             if(question != null) {
                 session.setAttribute("question", question);
             }
+            if(choice != null) {
+                String num = (String)session.getAttribute("question");
+                boolean question_answered = false;
+                if(session.getAttribute(num) != null) {
+                    question_answered = true;
+                }
+
+                if(!question_answered) {
+                    rs = st.executeQuery("SELECT correct from math.answer WHERE id=" + choice);
+                    rs.next();
+                    if(rs.getBoolean("correct")) {
+                        rs = st.executeQuery("SELECT points from math.question WHERE id=" + num);
+                        rs.next();
+                        int p = rs.getInt("points");
+                        rs = st.executeQuery("SELECT * from math.competitor WHERE username='" + (String)session.getAttribute("username") + "'");
+                        rs.next();
+                        int s = rs.getInt("score");
+                        st.executeUpdate("UPDATE math.competitor SET score=" + (s+p) + " WHERE username='" + session.getAttribute("username") + "'");
+                        session.setAttribute(num, "1"); // RIGHT
+                    } else {
+                        session.setAttribute(num, "0"); // WRONG
+                    }
+                }
+                response.sendRedirect("/");
+                return;
+            }
 
             out.print("<div class='container'>");
 
@@ -190,7 +216,7 @@ public class Game extends HttpServlet
                 String question_id = (String)session.getAttribute("question");
                 rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + question_id);
                 rs.next();
-                out.print("<form action='' method='post' onsubmit='setTimeout(function(){window.location.reload(true);},10)'>");
+                out.print("<form action='' method='post'>");
                 out.print("<h3>" + rs.getString("text") + "</h3>");
                 rs = st.executeQuery("SELECT id, text from math.answer WHERE question_id=" + question_id);
                 out.print("<table class='table table-bordered'>");
@@ -214,30 +240,6 @@ public class Game extends HttpServlet
             //         else
             //              print wrong answer popup
             //             update completed status
-            if(choice != null) {
-                String num = (String)session.getAttribute("question");
-                boolean question_answered = false;
-                if(session.getAttribute(num) != null) {
-                    question_answered = true;
-                }
-
-                if(!question_answered) {
-                    rs = st.executeQuery("SELECT correct from math.answer WHERE id=" + choice);
-                    rs.next();
-                    if(rs.getBoolean("correct")) {
-                        rs = st.executeQuery("SELECT points from math.question WHERE id=" + num);
-                        rs.next();
-                        int p = rs.getInt("points");
-                        rs = st.executeQuery("SELECT * from math.competitor WHERE username='" + (String)session.getAttribute("username") + "'");
-                        rs.next();
-                        int s = rs.getInt("score");
-                        st.executeUpdate("UPDATE math.competitor SET score=" + (s+p) + " WHERE username='" + session.getAttribute("username") + "'");
-                        session.setAttribute(num, "1"); // RIGHT
-                    } else {
-                        session.setAttribute(num, "0"); // WRONG
-                    }
-                }
-            }
 
 	    	// scoreboard
             out.print("<div class='col-sm-4 pull-right'>");
