@@ -77,15 +77,30 @@ public class Game extends HttpServlet
             out.print("<ul class='nav navbar-nav'>");
             out.print("<li class='dropdown'>");
             out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Easy<span class='caret'></span></a>");
-            // todo
+            out.print("<ul class='dropdown-toggle'>");
+                out.print("<li class='divider'></li>");
+                out.print("<li class='dropdown-header'>Legend</li>");
+                out.print("<li class='bg-success'>Green - Answered Correctly</li>");
+                out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
+            out.print("</ul>");
             out.print("</li>");
             out.print("<li class='dropdown'>");
             out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Medium<span class='caret'></span></a>");
-            // todo
+            out.print("<ul class='dropdown-toggle'>");
+                out.print("<li class='divider'></li>");
+                out.print("<li class='dropdown-header'>Legend</li>");
+                out.print("<li class='bg-success'>Green - Answered Correctly</li>");
+                out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
+            out.print("</ul>");
             out.print("</li>");
             out.print("<li class='dropdown'>");
             out.print("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Difficult<span class='caret'></span></a>");
-            // todo
+            out.print("<ul class='dropdown-toggle'>");
+                out.print("<li class='divider'></li>");
+                out.print("<li class='dropdown-header'>Legend</li>");
+                out.print("<li class='bg-success'>Green - Answered Correctly</li>");
+                out.print("<li class='bg-danger'>Red - Answered Incorrectly</li>");
+            out.print("</ul>");
             out.print("</li>");
             out.print("</ul>");
 
@@ -144,7 +159,7 @@ public class Game extends HttpServlet
             out.print("<div class='col-sm-4 pull-right'>");
             out.print("<div class='jumbotron'>");
             out.print("<div class='panel panel-default'>");
-            out.print("<div class='panel-heading'>Scoreboard</div>");
+            out.print("<div class='panel-heading'><p>Scoreboard</p></div>");
             out.print("<div class='panel-body panel-height'>");
             out.print("<div class='container-fluid'>");
             out.print("<div class='table-responsive'>");
