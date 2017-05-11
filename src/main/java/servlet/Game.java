@@ -88,9 +88,9 @@ public class Game extends HttpServlet
             // todo
             out.print("</li>");
 
-            out.print("<ul class='nav navbar-nav navbar-right'><li>");
-            out.print("<form action='/' method='post'><input type='submit' value='Refresh'></form>");
-            out.print("</li></ul>");
+            out.print("<li class='nav navbar-nav navbar-right' >");
+            out.print("<form action='/' method='post'><input class='btn btn-primary' type='submit' value='Refresh'></form>");
+            out.print("</li>");
 
             out.print("</ul>");
             out.print("</nav>");
