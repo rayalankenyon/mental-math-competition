@@ -71,8 +71,7 @@ public class Game extends HttpServlet
 				return;
 	    	}
 
-            int current_question = (question == null) ? 1 : Integer.parseInt(question);
-            out.print("" + current_question);
+            int current_question = (question == null) ? 0 : Integer.parseInt(question);
 
 	    	if(choice != null) {
 	    		int score = rs.getInt("score");
@@ -110,7 +109,7 @@ public class Game extends HttpServlet
 		    out.print("<br>");
 
 	    	// question / answers form
-	    	if(current_question < 0) {
+	    	if(current_question > 0) {
 		    	out.print("<form action='/?question='" + question + " method='post'>");
 		    	out.print("<table><tr><th>");
 		    	// rs = st.executeQuery("SELECT current_question from math.competitor WHERE username='" + session.getAttribute("username") + "'");
