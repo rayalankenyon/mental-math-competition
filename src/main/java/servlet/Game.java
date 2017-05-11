@@ -178,7 +178,13 @@ public class Game extends HttpServlet
                 String question_id = (String)session.getAttribute("question");
                 rs = st.executeQuery("SELECT text FROM math.question WHERE id=" + question_id);
                 rs.next();
-                out.print("<h1>" + rs.getString("text") + "</h1>");
+                out.print("<form method='post'>");
+                out.print("<p>" + rs.getString("text") + "</p>");
+                rs = st.executeQuery("SELECT id from math.answer WHERE question_id=" + question_id);
+                while(rs.next()) {
+                    out.print("<input type='radio' name='choice' onclick='this.form.submit();' value='" rs.getString("id") + "'>");
+                }
+                out.print("</form>");
 	    	}
             out.print("</div>");
             out.print("</div>");            
