@@ -142,7 +142,7 @@ public class Game extends HttpServlet
 
 	    	// scoreboard
             out.print("<div class='col-sm-4 pull-right'>");
-            out.print("<div class='table-responsive'>")
+            out.print("<div class='table-responsive'>");
 		    out.print("<table class='table'><tr><th>Competitor</th><th>Points</th></tr>");
 		    rs = st.executeQuery("SELECT username, score FROM math.competitor ORDER BY score DESC");
 		    while(rs.next()) {
