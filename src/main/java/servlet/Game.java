@@ -56,7 +56,7 @@ public class Game extends HttpServlet
 	    	if(username != null) {
 				rs = st.executeQuery("SELECT * FROM math.competitor WHERE username='" + username + "'");
 				if(!rs.next()) {
-					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', DEFAULT");
+					int status = st.executeUpdate("INSERT INTO math.competitor VALUES('" + username + "', DEFAULT)");
 					if(status <= 0) {
 						session.invalidate();
 						response.sendRedirect("/?Logout");
