@@ -213,7 +213,7 @@ public class Game extends HttpServlet
                         int p = rs.getInt("points");
                         rs = st.executeQuery("SELECT score from math.competitor WHERE id=" + (String)session.getAttribute("username"));
                         rs.next();
-                        int s = rs.getInt("score")
+                        int s = rs.getInt("score");
                         st.executeUpdate("UPDATE math.competitor SET score=" + (s+p) + " WHERE username='" + session.getAttribute("username") + "'");
                     } else {
                         // WRONG
