@@ -94,17 +94,6 @@ public class Game extends HttpServlet
             out.print("</li></ul>");
             out.print("</nav>");
 
-	    	// print
-	    	// logout	
-		    out.print("<table><tr><td>");
-		    out.print("<form action='/?Logout' method='post'><input type='submit' value='Logout'></form>");
-		    out.print("</td></tr>");
-		    out.print("<tr><td>");
-		    out.print("<form action='/' method='post'><input type='submit' value='Refresh'></form>");
-		    out.print("</td></tr>");
-		    out.print("</table>");
-		    out.print("<br>");
-
 
 	    	// question / answers form
             String question = session.getAttribute("question").toString();
