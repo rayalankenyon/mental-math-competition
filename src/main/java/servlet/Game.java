@@ -90,7 +90,7 @@ public class Game extends HttpServlet
             out.print("</ul>");
 
             out.print("<ul class='nav navbar-nav navbar-right pull-right'><li>");
-            out.print("<form class='form-horizontal' method='post'>");
+            out.print("<form class='nav-form' method='post'>");
             out.print("<input class='btn btn-primary' type='submit' value='Update Scoreboard'>");
             out.print("</form>");
             out.print("</li></ul>");
@@ -200,7 +200,7 @@ public class Game extends HttpServlet
         "<style>"+
         ".navbar .nav.pull-right {"+
         "float: right;"+
-        "margin-right: 98px;"+
+        "margin-right: 50px;"+
         "}"+
         "</style>"+
       "</head>"+
