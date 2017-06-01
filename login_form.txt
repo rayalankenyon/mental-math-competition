@@ -1,5 +1,0 @@
-<form method='post'>
-	username: <input type='text' name='username' required><br>
-	password: <input type='password' name='password' required><br>
-	<input type='submit' value='Login'> or <input type='button' onclock='' value='Create Account'>
-</form>
